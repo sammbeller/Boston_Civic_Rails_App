@@ -1,6 +1,6 @@
 TestApp::Application.routes.draw do
+  root to: => 'StaticPages#home'
   resources :reports
-  match ":controller/:action/:id"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
