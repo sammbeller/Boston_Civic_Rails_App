@@ -41,7 +41,7 @@ class ReportsController < ApplicationController
   # POST /reports
   # POST /reports.json
   def create
-    @report = Report.new(params[:report])
+    @report = Report.new(params)
     puts "THESE ARE PARAMETERS!!!!! : " + params.inspect
     respond_to do |format|
       if @report.save
