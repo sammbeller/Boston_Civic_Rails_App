@@ -45,9 +45,11 @@ class ReportsController < ApplicationController
     puts "THESE ARE PARAMETERS!!!!! : " + params.inspect
     respond_to do |format|
       if @report.save
+        puts "should have saved"
         format.html { redirect_to @report, notice: 'Report was successfully created.' }
         format.json { render json: @report, status: :created, location: @report }
       else
+        puts "should not have saved"
         format.html { render action: "new" }
         format.json { render json: @report.errors, status: :unprocessable_entity }
       end
