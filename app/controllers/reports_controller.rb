@@ -42,7 +42,7 @@ class ReportsController < ApplicationController
   # POST /reports.json
   def create
     @report = Report.new(params[:report])
-    puts "THESE ARE PARAMETERS!!!!! : " + params.inspect
+    puts "THESE ARE PARAMETERS!!!!! : " + params[:report].inspect
     respond_to do |format|
       if @report.save
         puts "should have saved"
