@@ -11,20 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
+
 ActiveRecord::Schema.define(:version => 20120619183540) do
-=======
->>>>>>> 66abfa8b854f01f83d08c6923aeae3d7038bac95
 
   create_table "reports", :force => true do |t|
     t.float    "latitude"
     t.float    "longitude"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-<<<<<<< HEAD
     t.string   "timestamp"
-=======
->>>>>>> 66abfa8b854f01f83d08c6923aeae3d7038bac95
   end
 
 end
