@@ -1,4 +1,8 @@
 TestApp::Application.routes.draw do
+  resources :messages
+
+  resources :users
+
   root to: 'reports#index'
   resources :reports
   # The priority is based upon order of creation:
