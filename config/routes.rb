@@ -1,10 +1,14 @@
 TestApp::Application.routes.draw do
-  resources :messages
+  #resources :messages
+  #resources :users
+  #resources :reports
 
-  resources :users
+  match '/home', to: 'messages#index'
+  match '/newMessage', to: 'messages#new'
+  match '/about', to: 'static_pages#about'
+  match '/contact', to: 'static_pages#contact'
 
-  root to: 'reports#index'
-  resources :reports
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

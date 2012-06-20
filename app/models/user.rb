@@ -12,5 +12,6 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true
 
 
-
+  has_many :reports
+  has_many :messages
 end
