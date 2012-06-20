@@ -9,6 +9,8 @@ describe Message do
   subject {@message}
 
   it {should respond_to (:content) }
+  it {should respond_to (:user) }
+
 
 	describe "content should be present" do 
   		before {@message.content = " "}
@@ -29,5 +31,12 @@ describe Message do
 		before {@message.content = "a" * 141 }
 		it {should_not be_valid}
 	end 
+
+	#describe "content should belong to user" do
+	#	before do
+	#		user =  User.new(email: "sambellar@gmail.com", password: "foo", password_confirmation: "foo")
+	#		@message.user = user
+	#	end 
+	#end 
 
 end

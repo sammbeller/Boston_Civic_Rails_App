@@ -1,5 +1,7 @@
-<h1>Listing messages</h1>
+<!--HOME PAGE FOR WHERE'S MY LANE? --> 
+<!--*******************************-->
 
+<% provide(:title, 'Home') %>
 <table>
   <tr>
     <th>Content</th>
@@ -8,16 +10,15 @@
     <th></th>
   </tr>
 
-<% @messages.each do |message| %>
-  <tr>
-    <td><%= message.content %></td>
-    <td><%= link_to 'Show', message %></td>
-    <td><%= link_to 'Edit', edit_message_path(message) %></td>
-    <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+  <% @messages.each do |message| %>
+    <tr>
+      <td><%= message.content %></td>
+      <td><%= link_to 'Show', message %></td>
+      <td><%= link_to 'Edit', edit_message_path(message) %></td>
+      <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+    <% end %>
 </table>
 
 <br />
-
 <%= link_to 'New Message', new_message_path %>
