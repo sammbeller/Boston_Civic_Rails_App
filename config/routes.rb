@@ -1,10 +1,13 @@
 TestApp::Application.routes.draw do
-  #resources :messages
-  #resources :users
-  #resources :reports
+  resources :messages
+  resources :users
+  resources :reports
 
   match '/home', to: 'messages#index'
   match '/newMessage', to: 'messages#new'
+  match '/editMessage', to: 'messages#edit'
+  match '/showMessage', to: 'messages#show'
+
   match '/about', to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
 
