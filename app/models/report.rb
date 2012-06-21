@@ -7,4 +7,5 @@ class Report < ActiveRecord::Base
 
   TIMESTAMP_MIN_TIME = 1341235426528
   validates :timestamp, presence: true, numericality: true
+  belongs_to :user
 end

@@ -1,23 +1,23 @@
-<h1>Listing messages</h1>
+<!--HOME PAGE FOR WHERE'S MY LANE? --> 
+<!--*******************************-->
 
-<table>
+<% provide(:title, 'Home') %>
+<table class = "table table-striped">
   <tr>
-    <th>Content</th>
+    <th><h2>Updates:</h2></th>
     <th></th>
     <th></th>
     <th></th>
   </tr>
 
-<% @messages.each do |message| %>
-  <tr>
-    <td><%= message.content %></td>
-    <td><%= link_to 'Show', message %></td>
-    <td><%= link_to 'Edit', edit_message_path(message) %></td>
-    <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+  <% @messages.each do |message| %>
+    <tr>
+      <td><strong><%= message.content %></strong></td>
+      <td><%= link_to 'Show', showMessage_path %></td>
+      <td><%= link_to 'Edit', editMessage_path(message) %></td>
+      <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
 </table>
 
 <br />
-
-<%= link_to 'New Message', new_message_path %>
