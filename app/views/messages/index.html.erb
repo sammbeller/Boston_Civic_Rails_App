@@ -2,22 +2,35 @@
 <!--*******************************-->
 
 <% provide(:title, 'Home') %>
-<table class = "table table-striped">
-  <tr>
-    <th><h2>Updates:</h2></th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 
-  <% @messages.each do |message| %>
-    <tr>
-      <td><strong><%= message.content %></strong></td>
-      <td><%= link_to 'Show', showMessage_path %></td>
-      <td><%= link_to 'Edit', editMessage_path(message) %></td>
-      <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    </tr>
-  <% end %>
-</table>
+<div class="row"> 
 
-<br />
+  <!--UPDATES --> 
+  <div class="span4">
+    <table class = "table table-striped">
+      <tr>
+        <th><h2>Updates:</h2></th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+
+      <% @messages.each do |message| %>
+        <tr>
+          <td><strong><%= message.content %></strong></td>
+        </br>
+          <td><%= link_to 'Show', showMessage_path(message) %></td>
+          <td><%= link_to 'Edit', editMessage_path(message) %></td>
+          <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </table>
+
+    <br />
+  </div> <!--span4 --> 
+
+  <!--MAP --> 
+  <div class="spang offset4">
+    <h1>This is where the map will display reports </h1> 
+  </div> 
+</div> <!--row --> 

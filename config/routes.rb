@@ -5,8 +5,10 @@ TestApp::Application.routes.draw do
 
   match '/home', to: 'messages#index'
   match '/newMessage', to: 'messages#new'
-  match '/editMessage', to: 'messages#edit'
-  match '/showMessage', to: 'messages#show'
+  match '/editMessage/:id', to: 'messages#edit', as: 'editMessage'
+  match '/showMessage/:id', to: 'messages#show', as: 'showMessage'
+
+  match '/users', to: 'users#index'
 
   match '/about', to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
