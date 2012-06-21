@@ -21,6 +21,26 @@ describe Report do
 		it { should_not be_valid }
 	end
 
+	describe "when latitude is of incorrect format" do
+		it "should be invalid" do
+			values = ["string"]
+			values.each do |value|
+				@report.latitude = value
+				@report.should_not be_valid
+			end
+		end
+	end
+
+	describe "when latitude is of correct format" do
+		it "should be valid" do
+			values = ["42.3657306"]
+			values.each do |value|
+				@report.latitude = value
+				@report.should be_valid
+			end
+		end
+	end
+
 	describe "longitude must not be nil" do
 		before { @report.longitude = nil }
 		it { should_not be_valid }
@@ -29,6 +49,26 @@ describe Report do
 	describe "longitude must be present" do
 		before { @report.longitude = " " }
 		it { should_not be_valid }
+	end
+
+	describe "when longitude is of incorrect format" do
+		it "should be invalid" do
+			values = ["string"]
+			values.each do |value|
+				@report.longitude = value
+				@report.should_not be_valid
+			end
+		end
+	end
+
+	describe "when longitude is of correct format" do
+		it "should be valid" do
+			values = ["42.3657306"]
+			values.each do |value|
+				@report.longitude = value
+				@report.should be_valid
+			end
+		end
 	end
 
 	describe "timestamp must not be nil" do
@@ -40,3 +80,24 @@ describe Report do
 		before { @report.timestamp = " " }
 		it { should_not be_valid }
 	end
+
+	describe "when timestamp is of incorrect format" do
+		it "should be invalid" do
+			values = ["string", false]
+			values.each do |value|
+				@report.timestamp = value
+				@report.should_not be_valid
+			end
+		end
+	end
+
+	describe "when timestamp is of correct format" do
+		it "should be valid" do
+			values = ["42.3657306"]
+			values.each do |value|
+				@report.timestamp = value
+				@report.should be_valid
+			end
+		end
+	end
+end
