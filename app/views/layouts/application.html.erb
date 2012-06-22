@@ -10,9 +10,12 @@
     	<%= javascript_include_tag "application" %>
     	<%= csrf_meta_tags %>
     	<%= render 'layouts/shim' %>
+
+
 	</head>
+
 	<body>
-		<%= render 'layouts/header' %>		
+		<%= render 'layouts/header' %>	
     	<div class="container">
       		<%= yield %>
       		<%= render 'layouts/footer' %>
