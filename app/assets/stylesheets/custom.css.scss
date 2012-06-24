@@ -10,6 +10,11 @@ html {
   overflow-y: scroll;
 }
 
+/* neccesary to display map without fuzziness */
+img {
+  max-width: inherit;
+}
+
 body {
   padding-top: 60px;
   background-color: #E6E6FA;
@@ -104,4 +109,3 @@ footer {
     }
   }
 }
-
