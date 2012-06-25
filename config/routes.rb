@@ -1,4 +1,6 @@
 TestApp::Application.routes.draw do
+  resources :settings
+
   resources :messages
   resources :users
   resources :reports

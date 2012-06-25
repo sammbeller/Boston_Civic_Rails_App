@@ -1,0 +1,21 @@
+<h1>Listing settings</h1>
+
+<table class= "table table-striped table-bordered">
+  <tr>
+    <th>Prompt</th>
+    <th>Value</th>
+    <th></th>
+  </tr>
+
+<% @settings.each do |setting| %>
+  <tr>
+    <td><%= setting.prompt %></td>
+    <td><%= setting.value %></td>
+    <td><%= link_to 'Show', setting %> </br> <%= link_to 'Edit', edit_setting_path(setting) %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Setting', new_setting_path %>
