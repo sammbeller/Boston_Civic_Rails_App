@@ -5,10 +5,12 @@
   <%= @user.email %>
 </p>
 
-<p>
-  <b>Password digest:</b>
-  <%= @user.password_digest %>
-</p>
+<table class = "table table-bordered table-striped">
+	<tr><td> Messages: </td></tr>
+	<% @usermessages.each do |m| %>
+		<tr> <td> <%= m.content %> </td> </tr> 
+	<% end %>
+</table>
 
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
