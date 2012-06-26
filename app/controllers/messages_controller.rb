@@ -1,4 +1,5 @@
 class MessagesController < ApplicationController
+  before_filter :signed_in_user, only: [:new, :update, :edit, :destroy]
   # GET /messages
   # GET /messages.json
   def index
