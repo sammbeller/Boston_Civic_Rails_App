@@ -4,6 +4,9 @@ TestApp::Application.routes.draw do
   resources :messages
   resources :users
   resources :reports
+  resources :sessions, only: [:new, :create, :destroy]
+
+  root :to => 'messages#index'
 
   match '/home', to: 'messages#index'
   match '/newMessage', to: 'messages#new'
@@ -11,6 +14,10 @@ TestApp::Application.routes.draw do
   match '/showMessage/:id', to: 'messages#show', as: 'showMessage'
 
   match '/users', to: 'users#index'
+  match '/signup', to: 'users#new'
+
+  match '/signin', to: 'sessions#new'
+  match '/signout', to: 'sessions#destroy', via: :delete
 
   match '/about', to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
