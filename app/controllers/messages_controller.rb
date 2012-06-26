@@ -2,6 +2,7 @@ class MessagesController < ApplicationController
   # GET /messages
   # GET /messages.json
   def index
+    @Reports = Report.all
     how_many = Setting.find_by_name("HomepageView").value.to_int
     @messages = Message.limit(how_many).order('created_at DESC')
 #    @messages = Message.find_by_created_at(xxxx)

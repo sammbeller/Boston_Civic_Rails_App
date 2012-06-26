@@ -10,53 +10,53 @@
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 <script type="text/javascript">
   var map;
-  function initialize() {
-    var myOptions = {
-      zoom: 12,
-      center: new google.maps.LatLng(42.32657009662249, -71.06678009033203),
-      disableDefaultUI: true,
-      panControl: true,
-      zoomControl: true,
-      scaleControl: true,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-    map = new google.maps.Map(document.getElementById('map_canvas'), myOptions);
+      function initialize() {
 
-    //BIKE STUFF
-    var bikeLayer = new google.maps.BicyclingLayer();
-    bikeLayer.setMap(map);
+        //initializing map view
+        var myOptions = {
+          zoom: 12,
+          center: new google.maps.LatLng(42.32657009662249, -71.06678009033203),
+          disableDefaultUI: true,
+          panControl: true,
+          zoomControl: true,
+          
+          scaleControl: true,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById('map_canvas'),
+            myOptions);
 
+        //BIKE STUFF
+        var bikeLayer = new google.maps.BicyclingLayer();
+        bikeLayer.setMap(map);
 
-    //MARKER 1
-    var marker = new google.maps.Marker({
-      position: new google.maps.LatLng(42.346872819794896, -71.06643676757812),
-      map: map,
-      title: 'REPORT'
-    });
-    marker.setAnimation(google.maps.Animation.DROP);
-    marker.setTitle('DROP');
+        <% @Reports.each do |x|%>
+          addMarker(<%= x.latitude %>, <%=x.longitude%>);
+        <% end %>
+      }
 
-    //MARKER 2 --MORE DETAILED WITH INFOWINDOW STUFF
-    var marker = new google.maps.Marker({
-      position: new google.maps.LatLng(42.363363955820496, -71.08978271484375),
-      map: map,
-      title: 'REPORT'
-    });
-    //DROP PIN
-    marker.setAnimation(google.maps.Animation.DROP);
-    marker.setTitle('DROP');
-    //MARKER INFOWINDOW
-    google.maps.event.addListener(marker, 'click', function(){
-      infowindow.open(map, this);
-      marker = this
-    });
-    var infowindow = new google.maps.InfoWindow({
-      content:'Hello World!'
-    });
-    //CLOSING MARKER INFOWINDOW
-    google.maps.event.addListener(infoWindow,'closeclick',function(){
-      marker.setMap(null); //removes the marker
-    });
-  }
-  google.maps.event.addDomListener(window, 'load', initialize);
+      function addMarker(lat, long){
+            var marker = new google.maps.Marker({
+              position: new google.maps.LatLng(lat, long),
+              map: map,
+              title: 'REPORT'
+            });
+            //DROP PIN
+            marker.setAnimation(google.maps.Animation.DROP);
+            marker.setTitle('DROP');
+            //DROP MARKER INFOWINDOW
+            google.maps.event.addListener(marker, 'click', function(){
+              infowindow.open(map, this);
+              marker = this
+            });
+            var infowindow = new google.maps.InfoWindow({
+              content:"Lat: " + lat + ", Long: " + long
+            });
+            //CLOSING MARKER INFOWINDOW
+            google.maps.event.addListener(infowindow,'closeclick',function(){
+              infowindow.close(map, this); //removes the marker
+            });
+        }    
+      console.log("message")
+      google.maps.event.addDomListener(window, 'load', initialize);
 </script>
