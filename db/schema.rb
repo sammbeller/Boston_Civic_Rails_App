@@ -24,7 +24,15 @@ ActiveRecord::Schema.define(:version => 20120626153345) do
     t.float    "longitude"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.string   "timestamp"
+    t.datetime "timestamp"
+  end
+
+  create_table "settings", :force => true do |t|
+    t.string   "prompt"
+    t.string   "name"
+    t.integer  "value"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|

@@ -2,7 +2,14 @@ class MessagesController < ApplicationController
   # GET /messages
   # GET /messages.json
   def index
-    @messages = Message.all
+    if Setting.all.empty?
+      how_many = 10
+    else 
+      how_many = Setting.find_by_name("HomepageView").value.to_int
+    end
+      
+      @messages = Message.limit(how_many).order('created_at DESC')
+#    @messages = Message.find_by_created_at(xxxx)
 
     respond_to do |format|
       format.html # index.html.erb
