@@ -72,14 +72,14 @@ p {
   float: left;
   margin-right: 10px;
   font-size: 1.7em;
-  color: #98FB98;
+  color: #FA8072;
   text-transform: uppercase;
   letter-spacing: -1px;
   padding-top: 9px;
   font-weight: bold;
   line-height: 1;
   &:hover {
-    color: #87CEFA;
+    color: #ADD8E6;
     text-decoration: none;
   }
 }
@@ -108,4 +108,15 @@ footer {
       margin-left: 10px;
     }
   }
+}
+
+/* UPDATES BOX ON HOME PAGE */
+#displaybox {
+  position:fixed; top:70px; left:20px; width:30%; height:60%; 
+  background-color:#FFFAFA ;
+  border-style:solid;
+  border-color:#006400;
+}
+#map {
+  position:fixed; top:0px; left:0px; width:100%; height:100%;
 }

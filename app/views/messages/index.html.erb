@@ -6,29 +6,27 @@
   <%= render 'map' %>
 </head>
 
+
 <body>
-  <div class="row-fluid"> 
-    <!--UPDATES --> 
-      <div class="span4">
-        <h2>Updates:</h2>
-        <table class = "table table-striped">
-          <% @messages.each do |message| %>
-            <tr>
-              <td><strong><%= message.content %></strong></td>
-              <td><%= link_to 'Show', showMessage_path(message) %></td>
-              <td><%= link_to 'Edit', editMessage_path(message) %></td>
-              <td><%= link_to 'Delete', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            </tr>
-          <% end %>
-        </table>
-        <br/>
-      </div> <!--span4 --> 
+  <div class="row">
+    <div class = "span12">
+      <div  id="map_canvas"> </div>
+    </div>
+  
 
-  <!--MAP --> 
-    <div class="span8" >
-      <h2> Map: </h2> 
-      <div id="map_canvas" style="width: 50%; height: 100%"></div>
-    </div> 
-
-  </div> <!--row --> 
+	<div id="displaybox" class = "span4">
+        <h2>             Updates:</h2>
+        	<table class = "table">
+          		<% @messages.each do |message| %>
+            		<tr>
+              			<td><strong><%= message.content %></strong></td>
+              			<td><%= link_to 'Show', showMessage_path(message) %></td>
+              			<td><%= link_to 'Edit', editMessage_path(message) %></td>
+              			<td><%= link_to 'Delete', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            		</tr>
+          		<% end %>
+        	</table>
+        	<br/>
+    </div> <!--span4 --> 
+  </div>
 </body>
