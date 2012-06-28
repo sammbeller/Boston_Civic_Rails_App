@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120626201655) do
+ActiveRecord::Schema.define(:version => 20120628210351) do
 
   create_table "messages", :force => true do |t|
     t.string   "content"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(:version => 20120626201655) do
     t.datetime "updated_at", :null => false
     t.datetime "timestamp"
     t.integer  "accuracy"
+    t.float    "velocity"
   end
 
   create_table "settings", :force => true do |t|
