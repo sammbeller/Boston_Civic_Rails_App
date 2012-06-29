@@ -1,0 +1,2 @@
+module LoggingsHelper
+end

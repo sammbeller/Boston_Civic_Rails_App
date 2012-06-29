@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120629174251) do
+ActiveRecord::Schema.define(:version => 20120629183422) do
+
+  create_table "loggings", :force => true do |t|
+    t.datetime "when"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "event"
+    t.string   "extra1"
+    t.string   "extra2"
+  end
 
   create_table "messages", :force => true do |t|
     t.string   "content"
