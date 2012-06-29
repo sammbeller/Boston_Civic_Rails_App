@@ -1,5 +1,34 @@
+<head> 
+	<%= render 'map' %>
+</head> 
+
+<body> 
+
+
 <p id="notice"><%= notice %></p>
-<%= @user.email %>
+<h2>Profile: <%= @user.email %> </h2> 
 <%= render partial: 'user', locals: { the_user: @user } %>
+<br>
+
+<div class = "row-fluid">
+	<div class= "span4" >
+		<h3> Reports: </h3>
+		<table class = "table table-bordered table-striped">
+			<tr><td> Lat </td><td>Long</td> <td>Time</td></tr>
+			<% @user_reports.each do |r| %>
+				<tr> <td> <%= r.latitude %> </td> 
+				<td> <%= r.longitude %> </td> 
+				<td> <%= r.timestamp %> </td> 
+			<% end %>
+		</table>
+	</div>
+	<div class = "span8">
+		<div  id="map_canvas" > </div>
+	</div>
+</div>
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
+
+
+</body> 

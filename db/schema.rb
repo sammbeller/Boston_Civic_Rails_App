@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120628210351) do
+ActiveRecord::Schema.define(:version => 20120629174251) do
 
   create_table "messages", :force => true do |t|
     t.string   "content"
@@ -27,7 +27,10 @@ ActiveRecord::Schema.define(:version => 20120628210351) do
     t.datetime "timestamp"
     t.integer  "accuracy"
     t.float    "velocity"
+    t.integer  "user_id"
   end
+
+  add_index "reports", ["user_id"], :name => "index_reports_on_user_id"
 
   create_table "settings", :force => true do |t|
     t.string   "prompt"

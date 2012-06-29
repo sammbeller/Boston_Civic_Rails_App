@@ -43,6 +43,8 @@ class ReportsController < ApplicationController
   def create
     params[:report][:timestamp] = DateTime.new(1970, 1, 1) + (params[:report][:timestamp].to_i/1000).seconds
     @report = Report.new(params[:report])
+    @report.user = current_user
+
     puts "THESE ARE PARAMETERS!!!!! : " + params.inspect
     respond_to do |format|
       if @report.save

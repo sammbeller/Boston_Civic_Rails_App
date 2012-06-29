@@ -1,16 +1,18 @@
 <h2>Listing users</h2>
 
-<table>
+<table class = "table table-striped table-bordered">
   <tr>
     <th>Email</th>
-    <th></th>
-    <th></th>
+    <th>Reports</th>
+    <th>Admin?</th>
     <th></th>
   </tr>
 
 <% @users.each do |user| %>
   <tr>
     <td><%= user.email %></td>
+    <td><%= user.reports.count %></td>
+    <td><%= user.admin ? "yes" : "no" %></td>
     <td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>
     <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
