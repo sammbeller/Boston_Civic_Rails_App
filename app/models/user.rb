@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
 
   has_many :reports
   has_many :messages
+  has_one :logging
 
 
   private

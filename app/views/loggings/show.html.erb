@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>When:</b>
+  <%= @logging.when %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @logging.user_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_logging_path(@logging) %> |
+<%= link_to 'Back', loggings_path %>

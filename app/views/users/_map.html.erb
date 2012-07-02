@@ -3,7 +3,7 @@
 <style type="text/css">
 #map_canvas {
     margin: 0;
-    padding: 50%;
+    padding: 30%;
     height: 100%;
     position:fixed; 
     top:0px;
@@ -42,7 +42,7 @@
         var bikeLayer = new google.maps.BicyclingLayer();
         bikeLayer.setMap(map);
 
-        <% @Reports.each do |x|%>
+        <% @user_reports.each do |x|%>
           addMarker(<%= x.latitude %>, <%=x.longitude%>);
         <% end %>
       }
