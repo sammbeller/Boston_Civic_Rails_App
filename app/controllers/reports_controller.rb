@@ -1,5 +1,5 @@
-
 class ReportsController < ApplicationController
+  before_filter :signed_in_user
   # GET /reports
   # GET /reports.json
   def index
@@ -43,7 +43,6 @@ class ReportsController < ApplicationController
   def create
     params[:report][:timestamp] = DateTime.new(1970, 1, 1) + (params[:report][:timestamp].to_i/1000).seconds
     @report = Report.new(params[:report])
-    puts "THESE ARE PARAMETERS!!!!! : " + params.inspect
     respond_to do |format|
       if @report.save
         puts "should have saved"

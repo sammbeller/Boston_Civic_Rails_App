@@ -5,9 +5,9 @@ module SessionsHelper
 		self.current_user = user
 	end
 
-    def signed_in?
-    	!current_user.nil?
-    end
+  def signed_in?
+    !current_user.nil?
+  end
 
 	def current_user= (user)
 		@current_user = user
@@ -21,9 +21,16 @@ module SessionsHelper
     user == current_user
   end
 
+  def admin?
+    current_user.admin
+  end
+
   def sign_out
     self.current_user = nil
     cookies.delete(:remember_token)
+  end
+
+  def mobile_user?
   end
 
   def redirect_back_or(default)
