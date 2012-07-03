@@ -1,5 +1,5 @@
-
 class ReportsController < ApplicationController
+  before_filter :signed_in_user
   # GET /reports
   # GET /reports.json
   def index
@@ -45,8 +45,6 @@ class ReportsController < ApplicationController
     @report = Report.new(params[:report])
     Logging.create(when: (DateTime.now), user_id: current_user, event: "Report Double Parked Car")
     @report.user = current_user
-
-    puts "THESE ARE PARAMETERS!!!!! : " + params.inspect
     respond_to do |format|
       if @report.save
         puts "should have saved"

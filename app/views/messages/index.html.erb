@@ -20,9 +20,11 @@
           		<% @messages.each do |message| %>
             		<tr>
               			<td><strong><%= message.content %></strong></td>
+                    <% if signed_in? && admin? %>
               			<td><%= link_to 'Show', showMessage_path(message) %></td>
               			<td><%= link_to 'Edit', editMessage_path(message) %></td>
               			<td><%= link_to 'Delete', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    <% end %>
             		</tr>
           		<% end %>
         	</table>
