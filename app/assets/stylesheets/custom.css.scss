@@ -16,7 +16,8 @@ img {
 }
 
 body {
-  padding-top: 60px;
+  padding-top: 38px;
+  position:fixed; top:0px; left:0px; width:100%; height:100%; 
   background-color: #E6E6FA;
 }
 
@@ -53,7 +54,7 @@ h1 {
 h2 {
   font-size: 1.7em;
   letter-spacing: -1px;
-  margin-top: 10px;
+  margin-top: 15px;
   margin-bottom: 10px;
   text-align: left;
   font-weight: normal;
@@ -112,11 +113,8 @@ footer {
 
 /* UPDATES BOX ON HOME PAGE */
 #displaybox {
-  position:fixed; top:70px; left:20px; width:30%; height:60%; 
+  position:fixed; top:70px; left:0px; width:30%; height:70%; 
   background-color:#FFFAFA ;
   border-style:solid;
-  border-color:#006400;
-}
-#map{
-  position:fixed; top:0px; left:0px; width:100%; height:100%;
+  border-color:#000000;
 }

@@ -44,6 +44,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(params[:user])
+    Logging.create(when: (DateTime.now), user_id: current_user, event: "Requesting new Account" )
 
     respond_to do |format|
       if @user.save
