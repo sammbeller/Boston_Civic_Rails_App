@@ -43,6 +43,7 @@ class ReportsController < ApplicationController
   def create
     params[:timestamp] = DateTime.new(1970, 1, 1) + (params[:timestamp].to_i/1000).seconds
     @report = Report.new(params)
+    puts params.inspect
     respond_to do |format|
       if @report.save
         puts "should have saved"
