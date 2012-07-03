@@ -1,5 +1,5 @@
 class ReportsController < ApplicationController
-  before_filter :signed_in_user
+  # before_filter :signed_in_user
   # GET /reports
   # GET /reports.json
   def index
