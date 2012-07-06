@@ -17,8 +17,7 @@ TestApp::Application.routes.draw do
 
   match '/users', to: 'users#index'
   match '/signup', to: 'users#new'
-  match '/mobile_create', to: 'users#mcreate'
-
+  match '/users/mobile_create', to: 'users#mcreate'
 
   match '/signin', to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete

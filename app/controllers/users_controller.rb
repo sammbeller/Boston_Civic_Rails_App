@@ -59,6 +59,7 @@ class UsersController < ApplicationController
   # POST /users/mcreate
   # POST /users/mcreate.json
   def mcreate
+    puts '*******************' + params[:email]
     email = params[:email]
     pw = SecureRandom.urlsafe_base64
     @user = User.new(email: email, password: pw, password_confirmation: pw)

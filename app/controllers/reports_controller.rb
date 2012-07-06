@@ -57,7 +57,7 @@ class ReportsController < ApplicationController
       end
     end
   end
-
+  
   # PUT /reports/1
   # PUT /reports/1.json
   def update
