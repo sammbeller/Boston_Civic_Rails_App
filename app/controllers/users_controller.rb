@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :signed_in_user
+  before_filter :signed_in_user, :except => [:mcreate]
   # GET /users
   # GET /users.json
   def index
@@ -59,7 +59,7 @@ class UsersController < ApplicationController
   # POST /users/mcreate
   # POST /users/mcreate.json
   def mcreate
-    puts '*******************' + params[:email]
+    puts "******************* #{params.inspect}"
     email = params[:email]
     pw = SecureRandom.urlsafe_base64
     @user = User.new(email: email, password: pw, password_confirmation: pw)
@@ -67,7 +67,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.json { render token: @user.remember_token }
+        format.json { render json: @user.remember_token, status: :created }
       else
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
