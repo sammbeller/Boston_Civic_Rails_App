@@ -43,6 +43,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(params[:user])
+    Logging.create(when: (DateTime.now), user_id: current_user, event: "Requesting new Account" )
 
     respond_to do |format|
       if @user.save
@@ -50,6 +51,23 @@ class UsersController < ApplicationController
         format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render action: "new" }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # POST /users/mcreate
+  # POST /users/mcreate.json
+  def mcreate
+    email = params[:email]
+    pw = SecureRandom.urlsafe_base64
+    @user = User.new(email: email, password: pw, password_confirmation: pw)
+    Logging.create(when: (DateTime.now), user_id: current_user, event: "Requesting new Account" )
+
+    respond_to do |format|
+      if @user.save
+        format.json { render token: @user.remember_token }
+      else
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end

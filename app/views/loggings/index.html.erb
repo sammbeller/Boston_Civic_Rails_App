@@ -1,9 +1,10 @@
 <h1>Listing loggings</h1>
 
-<table>
+<table class = "table table-striped table-bordered">
   <tr>
     <th>When</th>
     <th>User</th>
+    <th>Event</th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,6 +14,7 @@
   <tr>
     <td><%= logging.when %></td>
     <td><%= logging.user_id %></td>
+    <td><%= logging.event %></td>
     <td><%= link_to 'Show', logging %></td>
     <td><%= link_to 'Edit', edit_logging_path(logging) %></td>
     <td><%= link_to 'Destroy', logging, method: :delete, data: { confirm: 'Are you sure?' } %></td>
