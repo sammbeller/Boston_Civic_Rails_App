@@ -60,6 +60,7 @@ class UsersController < ApplicationController
   # POST /users/mcreate.json
   def mcreate
     email = params[:email]
+    puts params.inspect
     pw = SecureRandom.urlsafe_base64
     @user = User.new(email: email, password: pw, password_confirmation: pw)
     Logging.create(when: (DateTime.now), user_id: current_user, event: "Requesting new Account" )
