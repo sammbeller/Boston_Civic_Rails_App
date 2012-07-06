@@ -68,8 +68,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        puts "USER: " + @user.inspect
-        format.json { render json: @user }
+        format.json { render json: @user.remember_token, status: :created }
       else
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
