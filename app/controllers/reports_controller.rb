@@ -41,7 +41,7 @@ class ReportsController < ApplicationController
   # POST /reports
   # POST /reports.json
   def create
-    params[:report][:timestamp] = DateTime.new(1970, 1, 1) + (params[:report][:timestamp].to_i/1000).seconds
+    params[:timestamp] = DateTime.new(1970, 1, 1) + (params[:timestamp].to_i/1000).seconds
     @report = Report.new(params)
     Logging.create(when: (DateTime.now), user_id: current_user, event: "Report Double Parked Car")
     @report.user = current_user
