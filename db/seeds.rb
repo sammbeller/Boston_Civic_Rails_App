@@ -19,6 +19,10 @@ Report.create(latitude: 42.354611507112295, longitude: -71.06128692626953, times
 
 puts Report.count
 
+Message.create(content: "This is a test message.")
+Message.create(content: "Thank you for using Where's My Lane!")
+Message.create(content: "abcdefghijklmnop qrs tu v x yz 1234567 890 -= ? !,.<> |")
+
 u = User.new(email: "sammbeller@gmail.com", password: "admin00", password_confirmation: "admin00")
 u.admin = true
 u.save
