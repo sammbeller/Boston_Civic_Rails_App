@@ -47,11 +47,12 @@ html, #map_canvas {
         bikeLayer.setMap(map);
 
         <% @Reports.each do |x|%>
-          addMarker(<%= x.latitude %>, <%=x.longitude%>);
+          addMarker(<%= x.latitude %>, <%=x.longitude%>, "<%=x.reverse_geocode%>");
+          <%=puts "*************" + x.reverse_geocode %>
         <% end %>
       }
 
-      function addMarker(lat, long){
+      function addMarker(lat, long, adrs){
             var marker = new google.maps.Marker({
               position: new google.maps.LatLng(lat, long),
               map: map,
@@ -61,12 +62,13 @@ html, #map_canvas {
             marker.setAnimation(google.maps.Animation.DROP);
             marker.setTitle('DROP');
             //DROP MARKER INFOWINDOW
+            var latlng = new google.maps.LatLng(lat, long);
             google.maps.event.addListener(marker, 'click', function(){
               infowindow.open(map, this);
               marker = this
             });
             var infowindow = new google.maps.InfoWindow({
-              content:"Lat: " + lat + ", Long: " + long
+              content: adrs
             });
             //CLOSING MARKER INFOWINDOW
             google.maps.event.addListener(infowindow,'closeclick',function(){

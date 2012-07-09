@@ -15,6 +15,7 @@ group :development, :test do
 	gem 'rspec-rails', '2.10.0'
 	gem 'annotate', '~> 2.4.1.beta'
 	gem 'heroku'
+	gem 'geocoder'
 end
 
 
