@@ -1,5 +1,5 @@
 class ReportsController < ApplicationController
-  before_filter :signed_in_user
+  # before_filter :signed_in_user
   # GET /reports
   # GET /reports.json
   def index
@@ -41,15 +41,16 @@ class ReportsController < ApplicationController
   # POST /reports
   # POST /reports.json
   def create
-    params[:report][:timestamp] = DateTime.new(1970, 1, 1) + (params[:report][:timestamp].to_i/1000).seconds
-    @report = Report.new(params[:report])
+    params[:timestamp] = DateTime.new(1970, 1, 1) + (params[:timestamp].to_i/1000).seconds
+    @report = Report.new(params)
     Logging.create(when: (DateTime.now), user_id: current_user, event: "Report Double Parked Car")
     @report.user = current_user
     respond_to do |format|
       if @report.save
         puts "should have saved"
         format.html { redirect_to @report, notice: 'Report was successfully created.' }
-        format.json { render json: @report, status: :created, location: @report }
+        # This is where string identifier is sent back
+        format.json { render json: @report }
       else
         puts "should not have saved"
         format.html { render action: "new" }
@@ -57,7 +58,26 @@ class ReportsController < ApplicationController
       end
     end
   end
-  
+
+  # POST /users/mobile_create
+  # POST /users/mobile_create.json
+  def mcreate
+    email = params[:email]
+    pw = SecureRandom.urlsafe_base64
+    @user = User.new(email: email, password: pw, password_confirmation: pw)
+    Logging.create(when: (DateTime.now), user_id: current_user, event: "Requesting new Account" )
+
+    respond_to do |format|
+      if @user.save
+        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.json { render json: @user, status: :created, token: @user.remember_token }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # PUT /reports/1
   # PUT /reports/1.json
   def update

@@ -61,13 +61,14 @@ class UsersController < ApplicationController
   def mcreate
     puts "******************* #{params.inspect}"
     email = params[:email]
+    puts params.inspect
     pw = SecureRandom.urlsafe_base64
     @user = User.new(email: email, password: pw, password_confirmation: pw)
     Logging.create(when: (DateTime.now), user_id: current_user, event: "Requesting new Account" )
 
     respond_to do |format|
       if @user.save
-        format.json { render json: @user.remember_token, status: :created }
+        format.json { render text: @user.remember_token.to_json, status: :created }
       else
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end

@@ -1,5 +1,5 @@
 class Report < ActiveRecord::Base
-  attr_accessible :latitude, :longitude, :timestamp
+  attr_accessible :latitude, :longitude, :timestamp, :accuracy, :velocity
   validates :latitude, presence: true, numericality: true
 
   validates :longitude, presence: true, numericality: true
