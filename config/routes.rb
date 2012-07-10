@@ -25,7 +25,7 @@ TestApp::Application.routes.draw do
   match '/about', to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
 
-  match '/users/mobile_create', to: 'users#mcreate'
+  match '/reports/mobile_create', to: 'reports#mcreate'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
