@@ -1,5 +1,13 @@
 class UsersController < ApplicationController
-  before_filter :signed_in_user, :except => [:mcreate]
+  before_filter :signed_in_user, :except => [:mcreate, :activate]
+  
+  def activate 
+    puts "************** #{params.inspect}"
+    @user = User.find_by_remember_token(params[:remember_token])
+    puts "************** #{@user.inspect}"
+    @user.activation = true
+  end 
+
   # GET /users
   # GET /users.json
   def index
@@ -68,6 +76,8 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        # Tell the UserMailer to send a welcome Email after save
+        UserMailer.activation_email(@user).deliver
         format.json { render text: @user.remember_token.to_json, status: :created }
       else
         format.json { render json: @user.errors, status: :unprocessable_entity }

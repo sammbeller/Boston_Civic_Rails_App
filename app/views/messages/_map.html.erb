@@ -22,7 +22,7 @@ html, #map_canvas {
         //initializing map view
         var myOptions = {
           zoom: 13,
-          center: new google.maps.LatLng(42.32657009662249, -71.06678009033203),
+          center: new google.maps.LatLng(42.35169375329851, -71.06772422790527),
           disableDefaultUI: true,
           panControl: true,
           zoomControl: true,
@@ -66,6 +66,8 @@ html, #map_canvas {
             google.maps.event.addListener(marker, 'click', function(){
               infowindow.open(map, this);
               marker = this
+              map.setZoom(18);
+              map.setCenter(marker.getPosition());
             });
             var infowindow = new google.maps.InfoWindow({
               content: adrs
@@ -73,6 +75,7 @@ html, #map_canvas {
             //CLOSING MARKER INFOWINDOW
             google.maps.event.addListener(infowindow,'closeclick',function(){
               infowindow.close(map, this); //removes the marker
+              map.setZoom(13);
             });
         }    
       console.log("message")

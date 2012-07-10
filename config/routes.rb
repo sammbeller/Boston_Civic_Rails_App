@@ -26,6 +26,7 @@ TestApp::Application.routes.draw do
   match '/contact', to: 'static_pages#contact'
 
   match '/users/mobile_create', to: 'users#mcreate'
+  match '/users/activate/:remember_token', to: 'users#activate', as: 'activateUser'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

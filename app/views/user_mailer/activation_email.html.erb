@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>Welcome to Where's My Lane, <%= @user.email %></h1>
+    <p>
+      You will have successfully signed up to Where's My Lane,
+      once you follow this link: <%= link_to 'Activate Account',activateUser_url(@user.remember_token)%> <br/>
+    </p>
+    <p>
+      For more information about this application follow the link to our website.
+    </p>
+    <p>Thanks for joining and have a great day!</p>
+  </body>
+</html>
