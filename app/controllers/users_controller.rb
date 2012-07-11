@@ -78,7 +78,7 @@ class UsersController < ApplicationController
       if @user.save
         # Tell the UserMailer to send a welcome Email after save
         UserMailer.activation_email(@user).deliver
-        format.json { render text: @user.remember_token.to_json, status: :created }
+        format.json { render json: {token: @user.remember_token, NumReports: Setting.find(1).value}, status: :created }
       else
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
