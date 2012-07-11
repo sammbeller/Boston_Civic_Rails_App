@@ -42,7 +42,7 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(params[:user])
+    @user = User.new(params[:user], :as => :admin)
     Logging.create(when: (DateTime.now), user_id: current_user, event: "Requesting new Account" )
 
     respond_to do |format|
@@ -81,7 +81,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     respond_to do |format|
-      if @user.update_attributes(params[:user])
+      if user.update_attributes(params[:user], :as => :admin)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
