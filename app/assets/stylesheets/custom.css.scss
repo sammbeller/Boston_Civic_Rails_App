@@ -78,6 +78,9 @@ p {
   padding-top: .5px;
   font-weight: bold;
   line-height: 2;
+  &:hover { 
+      color: #FA8072;
+    }
 }
 
 /* footer */

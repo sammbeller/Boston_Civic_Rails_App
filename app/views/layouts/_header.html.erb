@@ -1,7 +1,11 @@
 <header class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
+      <ul class="nav pull-left">
+        <li>
       <%= link_to "where's my lane", home_path, id: "logo" %> 
+        </li>
+      </ul>
       <nav>
         <ul class="nav pull-right">
             </br>
@@ -26,7 +30,7 @@
             
           <% end %>
           <li><%= link_to "About",  about_path %></li>
-            <li><%= link_to "Contact", contact_path %></li>
+          <li><%= link_to "Contact", contact_path %></li>
         </ul>
       </nav>
     </div>
