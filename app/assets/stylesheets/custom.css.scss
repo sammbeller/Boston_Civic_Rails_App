@@ -53,7 +53,7 @@ h1 {
 h2 {
   font-size: 1.7em;
   letter-spacing: -1px;
-  margin-top: 15px;
+  margin-top: 60px;
   margin-bottom: 10px;
   text-align: left;
   font-weight: normal;
@@ -71,17 +71,13 @@ p {
 #logo {
   float: left;
   margin-right: 10px;
-  font-size: 1.7em;
+  font-size: 2.7em;
   color: #FA8072;
   text-transform: uppercase;
   letter-spacing: -1px;
-  padding-top: 9px;
+  padding-top: .5px;
   font-weight: bold;
-  line-height: 1;
-  &:hover {
-    color: #ADD8E6;
-    text-decoration: none;
-  }
+  line-height: 2;
 }
 
 /* footer */
@@ -112,8 +108,18 @@ footer {
 
 /* UPDATES BOX ON HOME PAGE */
 #displaybox {
-  position:fixed; top:70px; left:0px; width:30%; height:70%; 
+  position:fixed; top:90px; left:0px; width:30%; height:70%; 
   background-color:#FFFAFA ;
   border-style:solid;
   border-color:#000000;
+
+  h2 {
+    font-size: 1.7em;
+    letter-spacing: -1px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: left;
+    font-weight: normal;
+    color: $grayLight;
+  }
 }
