@@ -66,8 +66,8 @@ class ReportsController < ApplicationController
     user = User.find_by_remember_token(params[:remember_token])
     puts "#{params[:remember_token]}"
     if user #&& user.activation
-      params[:report][:timestamp] = DateTime.new(1970, 1, 1) + (params[:report][:timestamp].to_i/1000).seconds
-      @report = Report.new(params[:report])
+      params[:timestamp] = DateTime.new(1970, 1, 1) + (params[:timestamp].to_i/1000).seconds
+      @report = Report.new(params)
       @report.user_id = user.id
       Logging.create(when: (DateTime.now), user_id: current_user, event: "Report Double Parked Car")
       respond_to do |format|
