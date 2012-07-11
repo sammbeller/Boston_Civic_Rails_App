@@ -48,7 +48,7 @@ html, #map_canvas {
 
         <% @Reports.each do |x|%>
           addMarker(<%= x.latitude %>, <%=x.longitude%>, "<%=x.reverse_geocode%>");
-          <%=puts "*************" + x.reverse_geocode %>
+          <%=puts "************* #{x.reverse_geocode}"%>
         <% end %>
       }
 
