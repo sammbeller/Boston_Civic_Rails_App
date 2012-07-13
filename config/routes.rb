@@ -1,4 +1,4 @@
-2TestApp::Application.routes.draw do
+TestApp::Application.routes.draw do
   resources :loggings
 
   resources :settings
