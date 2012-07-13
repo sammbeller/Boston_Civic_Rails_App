@@ -38,10 +38,6 @@
         map = new google.maps.Map(document.getElementById('map_canvas'),
             myOptions);
 
-        //BIKE STUFF
-        var bikeLayer = new google.maps.BicyclingLayer();
-        bikeLayer.setMap(map);
-
         <% @user_reports.each do |x|%>
           addMarker(<%= x.latitude %>, <%=x.longitude%>);
         <% end %>
