@@ -10,4 +10,5 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  #config.active_record.mass_assignment_sanitizer = :strict
 end

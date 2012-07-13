@@ -14,6 +14,7 @@
 
 ActiveRecord::Schema.define(:version => 20120711211926) do
 
+
   create_table "loggings", :force => true do |t|
     t.datetime "when"
     t.integer  "user_id"

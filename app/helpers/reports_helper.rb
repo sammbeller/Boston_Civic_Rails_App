@@ -1,6 +1,6 @@
 module ReportsHelper
 
-	def msg(longitude, latitude, velocity, activation)
+	def message(longitude, latitude, velocity, activation)
 		# point1 = [report.latitude, report.longitude]
 		# nearby_points = []
 		# @Report.each do |x|
