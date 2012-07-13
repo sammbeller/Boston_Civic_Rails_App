@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 
->>>>>>> ad570bf1cdad29e6cb48ab8751cf964e9d00e452
 # encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
