@@ -46,6 +46,7 @@ class ReportsController < ApplicationController
     @report = Report.new(params)
     Logging.create(when: (DateTime.now), user_id: current_user, event: "Report Double Parked Car")
     @report.user = current_user
+
     respond_to do |format|
       if @report.save
         puts "should have saved"
@@ -65,11 +66,19 @@ class ReportsController < ApplicationController
   def mcreate
     user = User.find_by_remember_token(params[:remember_token])
     puts "#{params[:remember_token]}"
+    #????figure out message to send back to mobile through helper method
+      #rsp= msg(params[:longitude, :latitude, :velocity, user.activation])
+      #puts "**************************** #{rsp}"
+     
     if user #&& user.activation
       params[:timestamp] = DateTime.new(1970, 1, 1) + (params[:timestamp].to_i/1000).seconds
       @report = Report.new(params)
       @report.user_id = user.id
+
+     
+      
       Logging.create(when: (DateTime.now), user_id: current_user, event: "Report Double Parked Car")
+      
       respond_to do |format|
         if @report.save
           puts "should have saved"

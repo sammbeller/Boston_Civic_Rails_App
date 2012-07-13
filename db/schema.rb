@@ -1,3 +1,4 @@
+
 # encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
@@ -11,7 +12,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120710194841) do
+ActiveRecord::Schema.define(:version => 20120711211926) do
 
   create_table "loggings", :force => true do |t|
     t.datetime "when"
@@ -38,6 +39,7 @@ ActiveRecord::Schema.define(:version => 20120710194841) do
     t.integer  "accuracy"
     t.float    "velocity"
     t.integer  "user_id"
+    t.string   "address"
   end
 
   add_index "reports", ["user_id"], :name => "index_reports_on_user_id"

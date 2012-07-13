@@ -10,8 +10,7 @@ html, #map_canvas {
     right:0; 
     bottom:0; 
     margin:auto; 
-    min-width:50%;
-    min-height:50%;
+    overflow:hidden;
   }
 </style>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
@@ -41,10 +40,6 @@ html, #map_canvas {
         };
         map = new google.maps.Map(document.getElementById('map_canvas'),
             myOptions);
-
-        //BIKE STUFF
-        var bikeLayer = new google.maps.BicyclingLayer();
-        bikeLayer.setMap(map);
 
         <% @Reports.each do |x|%>
           addMarker(<%= x.latitude %>, <%=x.longitude%>, "<%=x.reverse_geocode%>");
