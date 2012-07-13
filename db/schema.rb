@@ -1,4 +1,7 @@
+<<<<<<< HEAD
+=======
 
+>>>>>>> ad570bf1cdad29e6cb48ab8751cf964e9d00e452
 # encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
@@ -13,6 +16,7 @@
 # It's strongly recommended to check this file into your version control system.
 
 ActiveRecord::Schema.define(:version => 20120711211926) do
+
 
   create_table "loggings", :force => true do |t|
     t.datetime "when"
