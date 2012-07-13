@@ -14,10 +14,9 @@
 	<div class= "span4" >
 		<h3> Reports: </h3>
 		<table class = "table table-bordered table-striped">
-			<tr><td> Lat </td><td>Long</td> <td>Time</td></tr>
+			<tr><td> Address</td> <td>Time</td></tr>
 			<% @user_reports.each do |r| %>
-				<tr> <td> <%= r.latitude %> </td> 
-				<td> <%= r.longitude %> </td> 
+				<td> <%= r.reverse_geocode %> </td>
 				<td> <%= r.timestamp %> </td> 
 			</tr>
 			<% end %>
