@@ -29,6 +29,8 @@ TestApp::Application.routes.draw do
   
   match '/reports/mobile_create', to: 'reports#mcreate'
 
+  match '/heatMap', to: 'messages#heat', as: 'heatMap'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
