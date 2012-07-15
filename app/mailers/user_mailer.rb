@@ -3,6 +3,12 @@ class UserMailer < ActionMailer::Base
 
   def activation_email(user)
     @user = user
-    mail(:to => user.email, :subject => "Welcome to My Awesome Site")
+    mail(:to => user.email, :subject => "Welcome to Where's My Lane")
+  end
+
+  def updates_email(user, reports)
+  	@user = user
+  	@reports = reports
+  	mail(:to => user.email, :subject => "Where's My Lane Updates")
   end
 end

@@ -113,4 +113,12 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+  def updates
+    @reports = Report.all
+    puts "********************** #{@reports}"
+    @user = current_user
+    UserMailer.updates_email(@user, @reports).deliver
+  end 
 end

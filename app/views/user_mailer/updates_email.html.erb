@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>This Week's Reports from Where's My Lane</h1>
+    
+    <table class="table table-bordered table-striped">
+      <tr>
+        <th>Address</th>
+        <th>Timestamp</th>
+      </tr>
+
+      <% @reports.each do |report| %>
+        <tr>
+          <td><%= report.reverse_geocode %></td>
+          <td><%= report.timestamp %></td>
+        </tr>
+      <% end %>
+    </table>
+  </body>
+</html>
