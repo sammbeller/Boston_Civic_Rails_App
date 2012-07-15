@@ -1,6 +1,6 @@
 module ReportsHelper
 
-	def message(longitude, latitude, velocity, activation)
+	def msg(report)
 		# point1 = [report.latitude, report.longitude]
 		# nearby_points = []
 		# @Report.each do |x|
@@ -11,8 +11,8 @@ module ReportsHelper
 		# end 
 		# return nearby_points.length
 		maxSpeed = Setting.find_by_name("Speed").value.to_int
-		if activation
-			if velocity <= maxSpeed
+		if report.activation
+			if report.velocity <= maxSpeed
 				return "Your report has been sent succesfully!"
 			else 
 				return "Sorry but you need to be stationary (for your own safety.) We cannot accept reports from moving vehicles."

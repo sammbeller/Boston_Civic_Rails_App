@@ -39,11 +39,11 @@
             myOptions);
 
         <% @user_reports.each do |x|%>
-          addMarker(<%= x.latitude %>, <%=x.longitude%>);
+          addMarker(<%= x.latitude %>, <%=x.longitude%>, "<%=x.reverse_geocode%>");
         <% end %>
       }
 
-      function addMarker(lat, long){
+      function addMarker(lat, long, address){
             var marker = new google.maps.Marker({
               position: new google.maps.LatLng(lat, long),
               map: map,
@@ -58,7 +58,7 @@
               marker = this
             });
             var infowindow = new google.maps.InfoWindow({
-              content:"Lat: " + lat + ", Long: " + long
+              content:address
             });
             //CLOSING MARKER INFOWINDOW
             google.maps.event.addListener(infowindow,'closeclick',function(){

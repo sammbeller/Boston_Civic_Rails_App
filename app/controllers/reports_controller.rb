@@ -66,15 +66,15 @@ class ReportsController < ApplicationController
   def mcreate
     user = User.find_by_remember_token(params[:remember_token])
     puts "#{params[:remember_token]}"
-    
-    # #figure out message to send back to mobile through helper method
-    #   response= message(params[:longitude, :latitude, :velocity, user.activation])
-    #   puts "**************************** #{response}"
      
     if user #&& user.activation
       params[:report][:timestamp] = DateTime.new(1970, 1, 1) + (params[:timestamp].to_i/1000).seconds
       @report = Report.new(params[:report])
       @report.user_id = user.id
+
+      #figure out message to send back to mobile through helper method
+        response= msg(@report)
+        puts "**************************** #{response}"
       
       Logging.create(when: (DateTime.now), user_id: current_user, event: "Report Double Parked Car")
       
