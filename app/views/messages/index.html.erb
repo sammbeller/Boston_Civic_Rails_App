@@ -21,8 +21,8 @@
             		<tr>
               			<td><strong><%= message.content %></strong></td>
                     <% if signed_in? && admin? %>
-              			<td><%= link_to 'Show', showMessage_path(message) %></td>
-              			<td><%= link_to 'Edit', editMessage_path(message) %></td>
+              			<td><%= link_to 'Show', message_path(message) %></td>
+              			<td><%= link_to 'Edit', edit_message_path(message) %></td>
               			<td><%= link_to 'Delete', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                     <% end %>
             		</tr>
