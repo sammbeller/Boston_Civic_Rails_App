@@ -43,7 +43,7 @@ class ApplicationController < ActionController::Base
       end 
 
     else 
-      return "Your report has been noted but will not be summated to the City of Boston until you activate your account. Please look for an email that we sent to you with instructions to activate."
+      return "Your report has been noted but will not be submitted to the City of Boston until you activate your account. Please look for an email that we sent to you with instructions to activate."
     end 
 
   end 
