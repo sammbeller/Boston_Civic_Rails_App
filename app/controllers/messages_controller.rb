@@ -89,4 +89,8 @@ class MessagesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def heat 
+    @Reports = Report.all
+  end 
 end

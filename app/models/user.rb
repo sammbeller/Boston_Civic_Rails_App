@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 
   attr_accessible :email, :password, :password_confirmation, :activation
-  attr_accessible accessible_attributes + [:admin], :as => :admin
+  attr_accessible :email, :password, :password_confirmation, :admin, :as => :admin_user
 
   has_secure_password
 

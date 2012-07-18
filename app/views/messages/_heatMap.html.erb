@@ -1,0 +1,62 @@
+<head>
+    <meta charset="utf-8">
+    <title>Google Maps JavaScript API v3 Example: Heatmap Layer</title>
+    <style type="text/css">
+html, #map_canvas {
+    padding: 30%;
+    height: 50%;
+    position:absolute; 
+    top:70px; 
+    left:0; 
+    right:0; 
+    bottom:0; 
+    margin:auto; 
+    overflow:hidden;
+  }
+</style>
+    <script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=visualization"></script>
+    <script type="text/javascript">
+      // Adding 500 Data Points
+      var map, pointarray, heatmap;
+
+      var taxiData = [
+        <% @Reports.each do |x|%>
+          new google.maps.LatLng(<%= x.latitude %>, <%=x.longitude%>),
+        <% end %>
+      ];
+
+      function initialize() {
+        var myOptions = {
+          zoom: 13,
+          center: new google.maps.LatLng(42.35169375329851, -71.06772422790527),
+          disableDefaultUI: true,
+          panControl: true,
+          zoomControl: true,
+          
+          scaleControl: true,
+          mapTypeId: google.maps.MapTypeId.ROADMAP, 
+          panControl: true,
+          panControlOptions: {
+            position: google.maps.ControlPosition.TOP_RIGHT
+          },
+          zoomControl: true,
+          zoomControlOptions: {
+            style: google.maps.ZoomControlStyle.LARGE,
+            position: google.maps.ControlPosition.TOP_RIGHT
+          }
+        };
+
+        map = new google.maps.Map(document.getElementById("map_canvas"),
+            myOptions);
+
+        pointArray = new google.maps.MVCArray(taxiData);
+
+        heatmap = new google.maps.visualization.HeatmapLayer({
+          data: pointArray
+        });
+
+        heatmap.setMap(map);
+      }
+
+    </script>

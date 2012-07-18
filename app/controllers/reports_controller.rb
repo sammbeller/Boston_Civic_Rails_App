@@ -1,6 +1,7 @@
 class ReportsController < ApplicationController
   # before_filter :signed_in_user
   skip_before_filter :verify_authenticity_token, :only => [:mcreate]
+  
   # GET /reports
   # GET /reports.json
   def index
@@ -66,15 +67,15 @@ class ReportsController < ApplicationController
   def mcreate
     user = User.find_by_remember_token(params[:remember_token])
     puts "#{params[:remember_token]}"
-    
-    # #figure out message to send back to mobile through helper method
-    #   response= message(params[:longitude, :latitude, :velocity, user.activation])
-    #   puts "**************************** #{response}"
      
     if user #&& user.activation
       params[:report][:timestamp] = DateTime.new(1970, 1, 1) + (params[:timestamp].to_i/1000).seconds
       @report = Report.new(params[:report])
       @report.user_id = user.id
+
+      #figure out message to send back to mobile through helper method
+        response= msg(@report)
+        puts "**************************** #{response}"
       
       Logging.create(when: (DateTime.now), user_id: current_user, event: "Report Double Parked Car")
       
@@ -83,7 +84,7 @@ class ReportsController < ApplicationController
           puts "should have saved"
           format.html { redirect_to @report, notice: 'Report was successfully created.' }
           # This is where string identifier is sent back
-          format.json { render json: @report }
+          format.json { render json: response }
         else
           puts "should not have saved"
           format.html { render action: "new" }
