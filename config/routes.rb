@@ -11,11 +11,7 @@ TestApp::Application.routes.draw do
   root :to => 'messages#index'
 
   match '/home', to: 'messages#index'
-  match '/newMessage', to: 'messages#new'
-  match '/editMessage/:id', to: 'messages#edit', as: 'editMessage'
-  match '/showMessage/:id', to: 'messages#show', as: 'showMessage'
 
-  match '/users', to: 'users#index'
   match '/signup', to: 'users#new'
   match '/users/mobile_create', to: 'users#mcreate'
 
