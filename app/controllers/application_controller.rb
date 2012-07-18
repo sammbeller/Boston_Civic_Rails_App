@@ -39,11 +39,11 @@ class ApplicationController < ActionController::Base
       if report.velocity <= maxSpeed
         return "Your report has been sent succesfully!"
       else 
-        return "Sorry but you need to be stationary (for your own safety.) We cannot accept reports from moving vehicles."
+        return "For your own safety, we do not accept reports from moving vehicles. You must come to a full stop before submitting a report."
       end 
 
     else 
-      return "Your report has been noted but will not be submitted to the City of Boston until you activate your account. Please look for an email that we sent to you with instructions to activate."
+      return "Your report has been noted but will not be submitted to the City of Boston until you activate your account. An email has been sent to the email address you provided with instructions explaining how to activate your account."
     end 
 
   end 
