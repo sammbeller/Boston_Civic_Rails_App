@@ -84,7 +84,7 @@ class ReportsController < ApplicationController
           puts "should have saved"
           format.html { redirect_to @report, notice: 'Report was successfully created.' }
           # This is where string identifier is sent back
-          format.json { render json: response:response }
+          format.json { render json: response }
         else
           puts "should not have saved"
           format.html { render action: "new" }
