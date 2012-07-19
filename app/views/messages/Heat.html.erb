@@ -2,6 +2,30 @@
   <%= render 'heatMap' %>
 </head>
 
+
 <body onload="initialize()">
-    <div id="map_canvas" ></div>
-  </body>
+  <div class="row">
+    	
+    <div class = "span12">
+      <div  id="map_canvas" > </div>
+    </div>
+
+    <div id="displaybox" class = "span4" >
+    	<div id="margin" >
+    		<span class="clear">
+    			<h2>Weekday: </br>
+    			<button onclick="sunday()">Sunday</button></br>
+    			<button onclick="monday()">Monday</button></br>
+    			<button onclick="tuesday()">Tuesday</button></br>
+    			<button onclick="wednesday()">Wednesday</button></br>
+    			<button onclick="thursday()">Thursday</button></br>
+    			<button onclick="friday()">Friday</button></br>
+    			<button onclick="saturday()">Saturday</button></br>
+    		</h2>
+    		</span>
+
+		</div>
+    </div> 
+	
+  </div>
+</body>

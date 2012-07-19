@@ -30,14 +30,14 @@ html, #map_canvas {
           zoomControl: true,
           zoomControlOptions: {
             style: google.maps.ZoomControlStyle.DEFAULT,
-            position: google.maps.ControlPosition.TOP_RIGHT
+            position: google.maps.ControlPosition.RIGHT_CENTER
           }
         };
         map = new google.maps.Map(document.getElementById('map_canvas'),
             myOptions);
 
         <% @Reports.each do |x|%>
-          addMarker(<%= x.latitude %>, <%=x.longitude%>, "<%=x.reverse_geocode%>");
+          addMarker(<%= x.latitude %>, <%=x.longitude%>, "<%=x.address%>");
           <%=puts "************* #{x.reverse_geocode}"%>
         <% end %>
       }

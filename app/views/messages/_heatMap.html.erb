@@ -38,20 +38,154 @@ html, #map_canvas {
           zoomControl: true,
           zoomControlOptions: {
             style: google.maps.ZoomControlStyle.DEFAULT,
-            position: google.maps.ControlPosition.TOP_RIGHT
+            position: google.maps.ControlPosition.RIGHT_CENTER
           }
         };
 
         map = new google.maps.Map(document.getElementById("map_canvas"),
             myOptions);
 
-        pointArray = new google.maps.MVCArray(taxiData);
+        allPoints = new google.maps.MVCArray(taxiData);
 
         heatmap = new google.maps.visualization.HeatmapLayer({
-          data: pointArray
+          data: allPoints
         });
 
         heatmap.setMap(map);
+      }
+
+      /* MONDAY */
+      var mondayData = [
+        <% @Reports.each do |x|%>
+          <% if x.timestamp.monday?%>
+            new google.maps.LatLng(<%= x.latitude %>, <%=x.longitude%>),
+          <% end %>
+        <% end %>
+      ];
+      function monday() {
+        toggleHeatmap()
+        mondayPoints = new google.maps.MVCArray(mondayData);
+
+        heatmap = new google.maps.visualization.HeatmapLayer({
+          data: mondayPoints
+        });
+
+         heatmap.setMap(map);
+      }
+
+      /* TUESDAY */
+      var tuesdayData = [
+        <% @Reports.each do |x|%>
+          <% if x.timestamp.tuesday?%>
+            new google.maps.LatLng(<%= x.latitude %>, <%=x.longitude%>),
+          <% end %>
+        <% end %>
+      ];
+      function tuesday() {
+        toggleHeatmap()
+        tuesdayPoints = new google.maps.MVCArray(tuesdayData);
+         heatmap = new google.maps.visualization.HeatmapLayer({
+          data: tuesdayPoints
+        });
+
+         heatmap.setMap(map);
+      }
+
+      /* WEDNESDAY */
+      var wedData = [
+        <% @Reports.each do |x|%>
+          <% if x.timestamp.wednesday?%>
+            new google.maps.LatLng(<%= x.latitude %>, <%=x.longitude%>),
+          <% end %>
+        <% end %>
+      ];
+      function wednesday() {
+        toggleHeatmap()
+        wedPoints = new google.maps.MVCArray(wedData);
+         heatmap = new google.maps.visualization.HeatmapLayer({
+          data: wedPoints
+        });
+
+         heatmap.setMap(map);
+      }
+
+
+      /* THURSDAY */
+      var thursdayData = [
+        <% @Reports.each do |x|%>
+          <% if x.timestamp.thursday?%>
+            new google.maps.LatLng(<%= x.latitude %>, <%=x.longitude%>),
+          <% end %>
+        <% end %>
+      ];
+      function thursday() {
+        toggleHeatmap()
+        thursdayPoints = new google.maps.MVCArray(thursdayData);
+         heatmap = new google.maps.visualization.HeatmapLayer({
+          data: thursdayPoints
+        });
+
+         heatmap.setMap(map);
+      }
+
+      /* FRIDAY */
+      var fridayData = [
+        <% @Reports.each do |x|%>
+          <% if x.timestamp.friday?%>
+            new google.maps.LatLng(<%= x.latitude %>, <%=x.longitude%>),
+          <% end %>
+        <% end %>
+      ];
+      function friday() {
+        toggleHeatmap()
+        fridayPoints = new google.maps.MVCArray(fridayData);
+         heatmap = new google.maps.visualization.HeatmapLayer({
+          data: fridayPoints
+        });
+
+         heatmap.setMap(map);
+      }
+
+      /* SATURDAY */
+      var satData = [
+        <% @Reports.each do |x|%>
+          <% if x.timestamp.saturday?%>
+            new google.maps.LatLng(<%= x.latitude %>, <%=x.longitude%>),
+          <% end %>
+        <% end %>
+      ];
+      function saturday() {
+        toggleHeatmap()
+        satPoints = new google.maps.MVCArray(satData);
+         heatmap = new google.maps.visualization.HeatmapLayer({
+          data: satPoints
+        });
+
+         heatmap.setMap(map);
+      }
+
+
+      /* Sunday */
+      var sundData = [
+        <% @Reports.each do |x|%>
+          <% if x.timestamp.sunday?%>
+            new google.maps.LatLng(<%= x.latitude %>, <%=x.longitude%>),
+          <% end %>
+        <% end %>
+      ];
+      function sunday() {
+        toggleHeatmap()
+        sundPoints = new google.maps.MVCArray(sundData);
+         heatmap = new google.maps.visualization.HeatmapLayer({
+          data: sundPoints
+        });
+
+         heatmap.setMap(map);
+      }
+
+
+      function toggleHeatmap() {
+        heatmap.setMap(heatmap.getMap() ? null : map);
       }
 
     </script>
