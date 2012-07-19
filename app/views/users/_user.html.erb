@@ -1,7 +1,7 @@
-<li>
-  <%= link_to the_user.email, user %>
+
   <% if signed_in? && current_user.admin? && !current_user?(user) %>
-    | <%= link_to "delete", user, method: :delete,
+   <p> 
+    <%= link_to "Would you like to delete this user?", user, method: :delete,
                                   data: { confirm: "Are you sure you would like to delete this user?" } %>
+</p>
   <% end %>
-</li>

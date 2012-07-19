@@ -6,7 +6,7 @@ html, #map_canvas {
     height: 50%;
     position:absolute; 
     top:70px; 
-    left:0; 
+    left:0px; 
     right:0; 
     bottom:0; 
     margin:auto; 
@@ -23,18 +23,13 @@ html, #map_canvas {
           zoom: 13,
           center: new google.maps.LatLng(42.35169375329851, -71.06772422790527),
           disableDefaultUI: true,
-          panControl: true,
           zoomControl: true,
           
           scaleControl: true,
           mapTypeId: google.maps.MapTypeId.ROADMAP, 
-          panControl: true,
-          panControlOptions: {
-            position: google.maps.ControlPosition.TOP_RIGHT
-          },
           zoomControl: true,
           zoomControlOptions: {
-            style: google.maps.ZoomControlStyle.LARGE,
+            style: google.maps.ZoomControlStyle.DEFAULT,
             position: google.maps.ControlPosition.TOP_RIGHT
           }
         };
