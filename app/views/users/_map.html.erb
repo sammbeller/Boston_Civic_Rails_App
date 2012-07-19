@@ -1,13 +1,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta charset="UTF-8">
 <style type="text/css">
-#map_canvas {
-    margin: 0;
+html, #map_canvas {
     padding: 30%;
-    height: 100%;
-    position:fixed; 
-    top:0px;
-
+    height: 50%;
+    position:absolute; 
+    top:70px; 
+    left:0px; 
+    right:0; 
+    bottom:0; 
+    margin:auto; 
+    overflow:hidden;
   }
 </style>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
@@ -20,15 +23,10 @@
           zoom: 13,
           center: new google.maps.LatLng(42.32657009662249, -71.06678009033203),
           disableDefaultUI: true,
-          panControl: true,
           zoomControl: true,
           
           scaleControl: true,
           mapTypeId: google.maps.MapTypeId.ROADMAP, 
-          panControl: true,
-          panControlOptions: {
-            position: google.maps.ControlPosition.TOP_RIGHT
-          },
           zoomControl: true,
           zoomControlOptions: {
             style: google.maps.ZoomControlStyle.LARGE,

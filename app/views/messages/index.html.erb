@@ -14,21 +14,31 @@
     </div>
   
 
-	<div id="displaybox" class = "span4">
+	<div id="displaybox" class = "span4" >
+    <div id="margin"> 
         <h2>Updates:</h2>
         	<table class = "table">
           		<% @messages.each do |message| %>
             		<tr>
-              			<td><strong><%= message.content %></strong></td>
+              			<td><strong><%= message.content %></strong></br>
+                      <span class="timestamp">
+                        <%= time_ago_in_words(message.created_at) %> ago
+                      </span>
                     <% if signed_in? && admin? %>
-              			<td><%= link_to 'Show', message_path(message) %></td>
-              			<td><%= link_to 'Edit', edit_message_path(message) %></td>
-              			<td><%= link_to 'Delete', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  </br>
+                    <div align="center"> 
+              			<%= link_to 'Show', message_path(message) %> | 
+              			<%= link_to 'Edit', edit_message_path(message) %> |
+              			<%= link_to 'Delete', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    </div> 
+                    <% else %>
+                      </td>
                     <% end %>
             		</tr>
           		<% end %>
         	</table>
         	<br/>
+      <div> 
     </div> <!--span4 --> 
   </div>
 </body>

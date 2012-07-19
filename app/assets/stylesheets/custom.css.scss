@@ -1,4 +1,4 @@
-@import "bootstrap";
+
 
 /* mixins, variables, etc. */
 
@@ -10,10 +10,6 @@ html {
   overflow-y: scroll;
 }
 
-/* neccesary to display map without fuzziness */
-img {
-  max-width: inherit;
-}
 
 body {
   padding-top: 38px;
@@ -57,12 +53,17 @@ h2 {
   margin-bottom: 10px;
   text-align: left;
   font-weight: normal;
-  color: $grayLight;
+  color: #808080;
 }
 
 p {
   font-size: 1.1em;
   line-height: 1.7em;
+}
+
+#bottom{
+  position: absolute; 
+  bottom: 100px;
 }
 
 
@@ -83,46 +84,33 @@ p {
     }
 }
 
-/* footer */
-
-footer {
-  margin-top: 45px;
-  padding-top: 5px;
-  border-top: 1px solid $grayMediumLight;
-  color: $grayLight;
-  a {
-    color: $gray;
-    &:hover { 
-      color: $grayDarker;
-    }
-  }  
-  small { 
-    float: left; 
-  }
-  ul {
-    float: right;
-    list-style: none;
-    li {
-      float: left;
-      margin-left: 10px;
-    }
-  }
-}
-
 /* UPDATES BOX ON HOME PAGE */
 #displaybox {
-  position:fixed; top:90px; left:0px; width:30%; height:70%; 
+  position:fixed; top:70px; left:-20px; width:250px; height:100%; 
   background-color:#FFFAFA ;
   border-style:solid;
+  border-width:1px;
   border-color:#000000;
 
   h2 {
     font-size: 1.7em;
     letter-spacing: -1px;
-    margin-top: 10px;
+    margin-top: 20px;
     margin-bottom: 10px;
     text-align: left;
     font-weight: normal;
-    color: $grayLight;
+    color: #808080;    
   }
+
+  #margin{
+    margin-left: 10px;
+    margin-right: 10px; 
+  }
+
+}
+
+.timestamp {
+  color: #808080;
+  text-align: center;
+  font-size: .7em;
 }
