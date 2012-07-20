@@ -66,11 +66,11 @@ class ReportsController < ApplicationController
   # POST /reports/mobile_create.json
   def mcreate
     user = User.find_by_remember_token(params[:remember_token])
-    puts "#{params[:remember_token]}"
+    puts "#{params}"
      
     if user #&& user.activation
       params[:timestamp] = DateTime.new(1970, 1, 1) + (params[:timestamp].to_i/1000).seconds
-      @report = Report.new(params)
+      @report = Report.new(params[:report])
       @report.user_id = user.id
 
       #figure out message to send back to mobile through helper method
