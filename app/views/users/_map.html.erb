@@ -37,7 +37,7 @@ html, #map_canvas {
             myOptions);
 
         <% @user_reports.each do |x|%>
-          addMarker(<%= x.latitude %>, <%=x.longitude%>, "<%=x.reverse_geocode%>");
+          addMarker(<%= x.latitude %>, <%=x.longitude%>, "<%=x.address%>");
         <% end %>
       }
 
@@ -47,9 +47,6 @@ html, #map_canvas {
               map: map,
               title: 'REPORT'
             });
-            //DROP PIN
-            marker.setAnimation(google.maps.Animation.DROP);
-            marker.setTitle('DROP');
             //DROP MARKER INFOWINDOW
             google.maps.event.addListener(marker, 'click', function(){
               infowindow.open(map, this);

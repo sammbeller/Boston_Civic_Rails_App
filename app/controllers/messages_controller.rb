@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
-  before_filter :signed_in_user, except: [:index, :mindex]
+  before_filter :signed_in_user, except: [:index, :heat, :mobile]
+
   # GET /messages
   # GET /messages.json
   def index
@@ -98,5 +99,6 @@ class MessagesController < ApplicationController
 
   def heat 
     @Reports = Report.all
+    #puts "*************" + options_from_collection_for_select(:method, 'time', 1)
   end 
 end

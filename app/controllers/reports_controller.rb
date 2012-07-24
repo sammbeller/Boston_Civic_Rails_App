@@ -72,25 +72,28 @@ class ReportsController < ApplicationController
   # POST /reports/mobile_create.json
   def mcreate
     user = User.find_by_remember_token(params[:remember_token])
-    puts "#{params[:remember_token]}"
+    puts "#{params}"
      
     if user #&& user.activation
       params[:timestamp] = DateTime.new(1970, 1, 1) + (params[:timestamp].to_i/1000).seconds
-      @report = Report.new(params)
+      @report = Report.new(params[:report])
       @report.user_id = user.id
 
-      #figure out message to send back to mobile through helper method
-        response= msg(@report)
-        puts "**************************** #{response}"
+      
       
       Logging.create(when: (DateTime.now), user_id: current_user, event: "Report Double Parked Car")
       
       respond_to do |format|
         if @report.save
+
+          #figure out message to send back to mobile through helper method
+          response= msg(@report)
+          puts "**************************** #{response}"
+          
           puts "should have saved"
           format.html { redirect_to @report, notice: 'Report was successfully created.' }
           # This is where string identifier is sent back
-          format.json { render json: { response:response } }
+            format.json { render json: { response:response } }
         else
           puts "should not have saved"
           format.html { render action: "new" }

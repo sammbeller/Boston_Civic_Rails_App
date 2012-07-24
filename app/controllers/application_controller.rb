@@ -24,27 +24,28 @@ class ApplicationController < ActionController::Base
   	redirect_to(root_path) unless signed_in? && current_user.admin?
   end
 
+  #send back messsage to client once mcreate called
   def msg(report)
-    # point1 = [report.latitude, report.longitude]
-    # nearby_points = []
-    # @Report.each do |x|
-    #   point2 = [x.latitude, x.longitude]
-    #   if (distance_between(point1, point2, options = {}) <= 0.005)
-    #     nearby_points.push(point2)
-    #   end
-    # end 
-    # return nearby_points.length
     maxSpeed = Setting.find_by_name("Speed").value.to_int
-    if report.user.activation
-      if report.velocity <= maxSpeed
-        return "Your report has been sent succesfully!"
-      else 
-        return "For your own safety, we do not accept reports from moving vehicles. You must come to a full stop before submitting a report."
-      end 
-
-    else 
-      return "Your report has been noted but will not be submitted to the City of Boston until you activate your account. An email has been sent to the email address you provided with instructions explaining how to activate your account."
+    rsp = ""
+    
+    #check if user is activated 
+    if !report.user.activation
+      rsp = rsp + "Your report has been noted but will not be submitted to the City of Boston until you activate your account. An email has been sent to the email address you provided with instructions explaining how to activate your account. "
     end 
+    
+    #check if user is at a certain speed 
+    if report.velocity >= maxSpeed
+      rsp = rsp + "For your own safety, we do not accept reports from moving vehicles. You must come to a full stop before submitting a report. "      
+    end 
+      
+    #find nearby reports (hotspots)   
+    @recs = report.find_nearby_reports(report, 5, 10)
+    puts "***************** #{@recs.count}"
+   
+    rsp = rsp + "You are the #{@recs.length} person to report this location."
 
+    #return concatinated response to mobile client 
+    return rsp 
   end 
 end
