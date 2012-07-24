@@ -1,6 +1,6 @@
 class ReportsController < ApplicationController
   # before_filter :signed_in_user
-  skip_before_filter :verify_authenticity_token, :only => [:mcreate]
+  skip_before_filter :verify_authenticity_token, :only => [:mcreate, :mindex]
   
   # GET /reports
   # GET /reports.json
@@ -11,6 +11,12 @@ class ReportsController < ApplicationController
       format.html # index.html.erb
       format.json { render json: @reports }
     end
+  end
+
+  # GET /reports/mindex.json
+  def mobile
+    @reports = Report.find(:all, limit: Setting.find_by_name("RepLimit").value)
+    render json: @reports
   end
 
   # GET /reports/1

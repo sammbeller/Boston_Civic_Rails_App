@@ -1,5 +1,5 @@
 class MessagesController < ApplicationController
-  before_filter :signed_in_user, except: [:index]
+  before_filter :signed_in_user, except: [:index, :mindex]
   # GET /messages
   # GET /messages.json
   def index
@@ -17,6 +17,12 @@ class MessagesController < ApplicationController
       format.html # index.html.erb
       format.json { render json: @messages }
     end
+  end
+
+    # GET /messages/mobile_view.json
+  def mobile
+    @messages = Message.find(:all, limit: Setting.find_by_name("MessLimit").value)
+    render json: @messages
   end
 
   # GET /messages/1

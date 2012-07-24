@@ -1,11 +1,17 @@
 TestApp::Application.routes.draw do
   resources :loggings
-
   resources :settings
-
-  resources :messages
+  resources :messages do
+    collection do
+      get 'mobile'
+    end
+  end
   resources :users
-  resources :reports
+  resources :reports do
+    collection do
+      get 'mobile'
+    end
+  end
   resources :sessions, only: [:new, :create, :destroy]
 
   root :to => 'messages#index'
