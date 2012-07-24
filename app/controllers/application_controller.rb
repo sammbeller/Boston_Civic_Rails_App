@@ -24,6 +24,7 @@ class ApplicationController < ActionController::Base
   	redirect_to(root_path) unless signed_in? && current_user.admin?
   end
 
+  #send back messsage to client once mcreate called
   def msg(report)
     maxSpeed = Setting.find_by_name("Speed").value.to_int
     rsp = ""
@@ -39,13 +40,10 @@ class ApplicationController < ActionController::Base
     end 
       
     #find nearby reports (hotspots)   
-    @recs = report.find_nearby_reports(5, 10)
-    #if first person to report this location 
-    if @recs.count == 1
-        rsp = rsp + "You are the first person to report this location. "
-    else 
-      rsp = rsp + "You are the #{@recs.count - 1} person to report this location in the past"
-    end 
+    @recs = report.find_nearby_reports(report, 5, 10)
+    puts "***************** #{@recs.count}"
+   
+    rsp = rsp + "You are the #{@recs.length} person to report this location."
 
     #return concatinated response to mobile client 
     return rsp 

@@ -122,9 +122,6 @@ Report.create(latitude: 42.341052318643335, longitude: -71.07416152954102, times
 Report.create(latitude: 42.33830840779254, longitude: -71.07094287872314, timestamp: '2012-07-26 17:22:01.000000')
 Report.create(latitude: 42.33837185217025, longitude: -71.07656478881836, timestamp: '2012-06-24 17:22:01.000000')
 Report.create(latitude: 42.335072659651864, longitude: -71.09278678894043, timestamp: '2012-06-22 17:22:03.000000')
-
-
-
 Report.create(latitude: 42.3509325778528,  longitude: -71.06467723846436, timestamp: '2012-06-21 17:22:03.000000')
 Report.create(latitude: 42.35096429368041,  longitude: -71.0630464553833, timestamp: '2012-07-22 17:22:01.000000')
 Report.create(latitude: 42.351440029174164,  longitude: -71.06205940246582, timestamp: '2012-06-23 17:22:01.000000')

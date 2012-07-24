@@ -73,18 +73,21 @@ class ReportsController < ApplicationController
       @report = Report.new(params[:report])
       @report.user_id = user.id
 
-      #figure out message to send back to mobile through helper method
-        response= msg(@report)
-        puts "**************************** #{response}"
+      
       
       Logging.create(when: (DateTime.now), user_id: current_user, event: "Report Double Parked Car")
       
       respond_to do |format|
         if @report.save
+
+          #figure out message to send back to mobile through helper method
+          response= msg(@report)
+          puts "**************************** #{response}"
+          
           puts "should have saved"
           format.html { redirect_to @report, notice: 'Report was successfully created.' }
           # This is where string identifier is sent back
-          format.json { render json: { response:response } }
+            format.json { render json: { response:response } }
         else
           puts "should not have saved"
           format.html { render action: "new" }

@@ -20,11 +20,7 @@ html, #map_canvas {
       // Adding 500 Data Points
       var map, pointarray, heatmap;
 
-      var taxiData = [
-        <% @Reports.each do |x|%>
-          new google.maps.LatLng(<%= x.latitude %>, <%=x.longitude%>),
-        <% end %>
-      ];
+      
 
       function initialize() {
         var myOptions = {
@@ -54,6 +50,23 @@ html, #map_canvas {
         heatmap.setMap(map);
       }
 
+
+      /* ALL */
+      var taxiData = [
+        <% @Reports.each do |x|%>
+          new google.maps.LatLng(<%= x.latitude %>, <%=x.longitude%>),
+        <% end %>
+      ];
+      function all() {
+        toggleHeatmap()
+        allPoints = new google.maps.MVCArray(taxiData);
+
+        heatmap = new google.maps.visualization.HeatmapLayer({
+          data: allPoints
+        });
+
+         heatmap.setMap(map);
+      }
       /* MONDAY */
       var mondayData = [
         <% @Reports.each do |x|%>
@@ -178,6 +191,43 @@ html, #map_canvas {
         sundPoints = new google.maps.MVCArray(sundData);
          heatmap = new google.maps.visualization.HeatmapLayer({
           data: sundPoints
+        });
+
+         heatmap.setMap(map);
+      }
+
+
+      /* TODAY */
+      var todData = [
+        <% @Reports.each do |x|%>
+          <% if (x.timestamp.day && x.timestamp.year && x.timestamp.month)==(Date.today.day && Date.today.year && Date.today.month)%>
+            new google.maps.LatLng(<%= x.latitude %>, <%=x.longitude%>),
+          <% end %>
+        <% end %>
+      ];
+      function today() {
+        toggleHeatmap()
+        todayPoints = new google.maps.MVCArray(todData);
+         heatmap = new google.maps.visualization.HeatmapLayer({
+          data: todayPoints
+        });
+
+         heatmap.setMap(map);
+      }
+
+      /* SAME MONTH */
+      var monthData = [
+        <% @Reports.each do |x|%>
+          <% if (x.timestamp.month)==(Date.today.month)%>
+            new google.maps.LatLng(<%= x.latitude %>, <%=x.longitude%>),
+          <% end %>
+        <% end %>
+      ];
+      function month() {
+        toggleHeatmap()
+        monthPoints = new google.maps.MVCArray(monthData);
+         heatmap = new google.maps.visualization.HeatmapLayer({
+          data: monthPoints
         });
 
          heatmap.setMap(map);

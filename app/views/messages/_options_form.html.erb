@@ -1,0 +1,20 @@
+<%= form_tag(heatMap_path, :method => 'post') do %>
+    
+    <!-- SPAN OF TIME--> 
+    <strong>Span of Time:</strong>   
+    <%= select_tag :span, options_for_select([['', 0], ['Today', 1], ['This Week', 2], ['This Month', 3], ['This Year', 4]]) %>
+
+    <!-- DAY --> 
+    <strong>Day:</strong>
+    <%= select_tag :day, options_for_select([['', 0], ['All Days', 1], ['Weekend', 2], ['Weekdays', 3], ['Sunday', 4], ['Monday', 5], ['Tuesday', 6], ['Wednesday', 7], ['Thursday', 8], ['Friday', 9], ['Saturday', 10], ['Sunday', 11]]) %>
+
+    <!-- TIME OF DAY --> 
+    <strong>Time of Day:</strong>
+    <%= select_tag :time, options_for_select([['', 0], ['Morning', 1], ['Afternoon', 2], ['Night', 3], ['All Day', 4]]) %>
+    </br>
+
+    <div align="center">
+    <%= submit_tag "Show Data", :name => nil, :class => 'btn btn-primary' %>
+    </div>
+
+<% end %>

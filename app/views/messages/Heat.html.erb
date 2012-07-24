@@ -1,7 +1,8 @@
+<% provide(:title, 'Heat Map') %>
+
 <head> 
   <%= render 'heatMap' %>
 </head>
-
 
 <body onload="initialize()">
   <div class="row">
@@ -10,18 +11,19 @@
       <div  id="map_canvas" > </div>
     </div>
 
+    <!-- Display options for heatmap based on time od day, day of week...--> 
     <div id="displaybox" class = "span4" >
     	<div id="margin" >
     		<span class="clear">
-    			<h2>Weekday: </br>
-    			<button onclick="sunday()">Sunday</button></br>
-    			<button onclick="monday()">Monday</button></br>
-    			<button onclick="tuesday()">Tuesday</button></br>
-    			<button onclick="wednesday()">Wednesday</button></br>
-    			<button onclick="thursday()">Thursday</button></br>
-    			<button onclick="friday()">Friday</button></br>
-    			<button onclick="saturday()">Saturday</button></br>
-    		</h2>
+                </br></br>
+                <p align="center">
+                     <button onclick="all()" class="btn btn-primary">All Data</button></br>
+                    <hr>
+                    Choose how you would like to display the data:
+                </p>
+                 </br>
+                <%= render 'options_form' %>
+               
     		</span>
 
 		</div>
