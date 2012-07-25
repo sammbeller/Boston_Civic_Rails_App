@@ -99,6 +99,5 @@ class MessagesController < ApplicationController
 
   def heat 
     @Reports = Report.all
-    #puts "*************" + options_from_collection_for_select(:method, 'time', 1)
   end 
 end

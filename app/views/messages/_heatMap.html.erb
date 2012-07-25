@@ -17,10 +17,7 @@ html, #map_canvas {
     <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=visualization"></script>
     <script type="text/javascript">
-      // Adding 500 Data Points
       var map, pointarray, heatmap;
-
-      
 
       function initialize() {
         var myOptions = {
@@ -232,7 +229,6 @@ html, #map_canvas {
 
          heatmap.setMap(map);
       }
-
 
       function toggleHeatmap() {
         heatmap.setMap(heatmap.getMap() ? null : map);
