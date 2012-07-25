@@ -98,9 +98,8 @@ class MessagesController < ApplicationController
   end
 
   def heat
-    puts params.inspect
     if (params.has_key?(:span) && params.has_key?(:day) && params.has_key?(:time))
-      @Reports = Report.find_by_options(params[:span], params[:day], params[:time])
+      @Reports = Report.find_by_options(DateTime.parse(params[:span]), JSON.parse(params[:day]), JSON.parse(params[:time]))
     else
       @Reports = Report.all
     end

@@ -2,15 +2,15 @@
     
     <!-- SPAN OF TIME--> 
     <strong>Span of Time:</strong>   
-    <%= select_tag :span, options_for_select([['', nil], ['Today', (Time.now - 24.hours)], ['This Week', (Time.now - 1.week)], ['This Month', (Time.now - 30.days)], ['This Year', (Date.today-365)]]) %>
+    <%= select_tag :span, options_for_select([['All Time', (DateTime.new) ], ['Today', (DateTime.now - 24.hours)], ['This Week', (DateTime.now - 1.week)], ['This Month', (DateTime.now - 30.days)], ['This Year', (DateTime.now - 365.days)]]) %>
 
     <!-- DAY --> 
     <strong>Day:</strong>
-    <%= select_tag :day, options_for_select([['', nil], ['All Days', [0, 1, 2, 3, 4, 5, 6, 7], ['Weekend', [0, 6]]], ['Weekdays', [1, 2, 3, 4, 5]], ['Sunday', [0]], ['Monday', [1]], ['Tuesday', [2]], ['Wednesday', [3]], ['Thursday', [4]], ['Friday', [5]], ['Saturday', [6]]]) %>
+    <%= select_tag :day, options_for_select([['All Days', (0..6).to_a], ['Weekend', [0, 6]], ['Weekdays', [1, 2, 3, 4, 5]], ['Sunday', [0]], ['Monday', [1]], ['Tuesday', [2]], ['Wednesday', [3]], ['Thursday', [4]], ['Friday', [5]], ['Saturday', [6]]]) %>
 
     <!-- TIME OF DAY --> 
     <strong>Time of Day:</strong>
-    <%= select_tag :time, options_for_select([['', nil], ['Morning', [6, 7, 8, 9, 10, 11]], ['Afternoon', [12, 13, 14, 15, 16, 17]], ['Evening', [18, 19, 20, 21, 22]], ['Night', [23, 24, 0, 1, 2, 3, 4, 5]], ['All Day', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]]]) %>
+    <%= select_tag :time, options_for_select([['All Day', (0..23).to_a], ['Morning', (6..11).to_a], ['Afternoon', (12..17).to_a], ['Evening', (18..22).to_a], ['Night', [23, 24] + (0..5).to_a]]) %>
     </br>
 
     <div align="center">
