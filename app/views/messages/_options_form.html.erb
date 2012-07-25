@@ -6,11 +6,11 @@
 
     <!-- DAY --> 
     <strong>Day:</strong>
-    <%= select_tag :day, options_for_select([['', nil], ['All Days', [0, 1, 2, 3, 4, 5, 6, 7], ['Weekend', [0, 6]]], ['Weekdays', [1, 2, 3, 4, 5]], ['Sunday', [0]], ['Monday', [1]], ['Tuesday', [2]], ['Wednesday', [3]], ['Thursday', [4]], ['Friday', [5]], ['Saturday', [6]], ['Sunday', [7]]]) %>
+    <%= select_tag :day, options_for_select([['', nil], ['All Days', [0, 1, 2, 3, 4, 5, 6, 7], ['Weekend', [0, 6]]], ['Weekdays', [1, 2, 3, 4, 5]], ['Sunday', [0]], ['Monday', [1]], ['Tuesday', [2]], ['Wednesday', [3]], ['Thursday', [4]], ['Friday', [5]], ['Saturday', [6]]]) %>
 
     <!-- TIME OF DAY --> 
     <strong>Time of Day:</strong>
-    <%= select_tag :time, options_for_select([['', nil], ['Morning', [6, 7, 8, 9, 10, 11], ['Afternoon', [12, 13, 14, 15, 16, 17]], ['Night', [18, 19, 20, 21, 22]], ['', [23, 24, 0, 1, 2, 3, 4, 5]], ['All Day', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]]]]) %>
+    <%= select_tag :time, options_for_select([['', nil], ['Morning', [6, 7, 8, 9, 10, 11]], ['Afternoon', [12, 13, 14, 15, 16, 17]], ['Evening', [18, 19, 20, 21, 22]], ['Night', [23, 24, 0, 1, 2, 3, 4, 5]], ['All Day', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]]]) %>
     </br>
 
     <div align="center">

@@ -97,11 +97,12 @@ class MessagesController < ApplicationController
     end
   end
 
-  def heat 
-    if params.nil?
-      @Reports = Report.all
-    else
+  def heat
+    puts params.inspect
+    if (params.has_key?(:span) && params.has_key?(:day) && params.has_key?(:time))
       @Reports = Report.find_by_options(params[:span], params[:day], params[:time])
+    else
+      @Reports = Report.all
     end
   end 
 end
