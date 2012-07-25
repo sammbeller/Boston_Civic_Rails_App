@@ -101,7 +101,7 @@ class MessagesController < ApplicationController
     if params.nil?
       @Reports = Report.all
     else
-      @Reports = Report.find_by_options(params[span], params[day], params[time])
+      @Reports = Report.find_by_options(params[:span], params[:day], params[:time])
     end
   end 
 end
