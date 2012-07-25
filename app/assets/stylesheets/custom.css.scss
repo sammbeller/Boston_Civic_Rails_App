@@ -91,7 +91,7 @@ p {
 
 /* UPDATES BOX ON HOME PAGE */
 #displaybox {
-  position:fixed; top:70px; left:-20px; width:250px; height:100%; 
+  position:fixed; top:50px; left:-20px; width:250px; height:100%; 
   background-color:#FFFAFA ;
   border-style:solid;
   border-width:1px;
@@ -122,4 +122,9 @@ p {
   color: #808080;
   text-align: center;
   font-size: .7em;
+}
+
+#color-background {
+  background-color: red;
+  color: red;
 }

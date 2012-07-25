@@ -14,7 +14,7 @@
 
       <% @reports.each do |report| %>
         <tr>
-          <td><%= report.reverse_geocode %></td>
+          <td><%= report.address %></td>
           <td><%= report.timestamp %></td>
         </tr>
       <% end %>
