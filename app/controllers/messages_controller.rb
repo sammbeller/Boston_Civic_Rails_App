@@ -102,5 +102,6 @@ class MessagesController < ApplicationController
       @Reports = Report.all
     else
       @Reports = Report.find_by_options(params[span], params[day], params[time])
+    end
   end 
 end
