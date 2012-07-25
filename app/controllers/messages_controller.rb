@@ -98,7 +98,9 @@ class MessagesController < ApplicationController
   end
 
   def heat 
-    @Reports = Report.all
-    #puts "*************" + options_from_collection_for_select(:method, 'time', 1)
+    if params.nil?
+      @Reports = Report.all
+    else
+      @Reports = Report.find_by_options(params[span], params[day], params[time])
   end 
 end

@@ -29,5 +29,28 @@ class Report < ActiveRecord::Base
     	return Report.find_all_by_street(report.street)
     end
 
+    def self.find_by_options(span, days, time)
+      reports = Report.all
+      puts "begin"
+      reports.each {|el| puts el.id}
+      reports = reports.select do |x|
+        days.include?(x.timestamp.wday)
+      end
+
+            puts "after days"
+            reports.each {|el| puts el.id}
+      reports = reports.select do |x|
+        time.include?(x.timestamp.hour)
+      end
+
+      puts "after hours"
+      reports.each {|el| puts el.id}
+      reports = reports.select do |x|
+        (x.timestamp - span) >= 0
+      end
+
+      puts "after span"
+      reports.each {|el| puts el.id}
+    end
 	
 end

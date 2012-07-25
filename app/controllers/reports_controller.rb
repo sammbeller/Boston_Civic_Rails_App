@@ -5,7 +5,7 @@ class ReportsController < ApplicationController
   # GET /reports
   # GET /reports.json
   def index
-    @reports = Report.all
+      @reports = Report.all
 
     respond_to do |format|
       format.html # index.html.erb
