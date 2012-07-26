@@ -15,30 +15,51 @@
   
 
 	<div id="displaybox" class = "span4" >
-    <div id="margin"> 
-        <h2>Updates:</h2>
-        	<table class = "table">
-          		<% @messages.each do |message| %>
-            		<tr>
-              			<td><strong><%= message.content %></strong></br>
-                      <span class="timestamp">
-                        <%= time_ago_in_words(message.created_at) %> ago
-                      </span>
+
+    <ul class="nav nav-tabs" id="top">
+      <li class="active"><a href="#update" data-toggle="tab">Updates</a></li>
+      <li><a href="#option" data-toggle="tab">Options</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div class="tab-pane active" id="update">
+        <div id="margin"> 
+          <table class="table table-condensed">
+              <% @messages.each do |message| %>
+                <tbody>
+                <tr>
+                  <td>
+                    <strong><%= message.content %></strong></br>
+                    <span class="timestamp">
+                      <%= time_ago_in_words(message.created_at) %> ago
+                    </span>
                     <% if signed_in? && admin? %>
-                  </br>
-                    <div align="center"> 
-              			<%= link_to 'Show', message_path(message) %> | 
-              			<%= link_to 'Edit', edit_message_path(message) %> |
-              			<%= link_to 'Delete', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                    </div> 
-                    <% else %>
-                      </td>
+                      <br/>
+                      <div align="center"> 
+                        <%= link_to 'Show', message_path(message) %> | 
+                        <%= link_to 'Edit', edit_message_path(message) %> |
+                        <%= link_to 'Delete', message, method: :delete, data: { confirm: 'Are you sure?' } %>
+                      </div> 
                     <% end %>
-            		</tr>
-          		<% end %>
-        	</table>
-        	<br/>
-      <div> 
-    </div> <!--span4 --> 
+                  </td>
+                </tr>
+              </tbody>
+              <% end %>
+          </table>
+          <br/>
+      </div> 
+      </div>
+      <div class="tab-pane" id="option">
+        <div id="margin">
+          <%= render 'options_form', :path => root_path %>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    
+    </div> 
   </div>
 </body>

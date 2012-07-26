@@ -9,10 +9,16 @@ class MessagesController < ApplicationController
     else 
       how_many = Setting.find_by_name("HomepageView").value.to_int
     end
-    @Reports = Report.all
+    
+    #Display Reports based on params
+    if (params.has_key?(:span) && params.has_key?(:day) && params.has_key?(:time))
+      @Reports = Report.find_by_options(DateTime.parse(params[:span]), JSON.parse(params[:day]), JSON.parse(params[:time]))
+    else
+      @Reports = Report.all
+    end
     @messages = Message.limit(how_many).order('created_at DESC')
 
-#    @messages = Message.find_by_created_at(xxxx)
+    # @messages = Message.find_by_created_at(xxxx)
 
     respond_to do |format|
       format.html # index.html.erb
