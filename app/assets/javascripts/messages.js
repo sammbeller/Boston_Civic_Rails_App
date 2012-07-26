@@ -1,7 +1,3 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
-
 /* ========================================================
  * bootstrap-tab.js v2.0.4
  * http://twitter.github.com/bootstrap/javascript.html#tabs
