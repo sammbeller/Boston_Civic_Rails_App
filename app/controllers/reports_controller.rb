@@ -6,7 +6,7 @@ class ReportsController < ApplicationController
   # GET /reports
   # GET /reports.json
   def index
-      @reports = Report.all
+      @reports = Report.order('created_at DESC')
 
     respond_to do |format|
       format.html # index.html.erb
@@ -133,4 +133,32 @@ class ReportsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def admin 
+    @reports = Report.order('created_at DESC')
+
+    #hot spot
+    @hotspot_reports= Report.count(:all, :group => 'street').sort_by {|street, count| -count }
+
+
+    #today reports
+    @today_reports = []
+    @reports.each do |report|
+      if report.timestamp.today?
+        @today_reports.push(report)
+      end 
+    end 
+
+    #month reports
+    @month_reports = []
+        @reports.each do |report|
+           if (report.timestamp.month)==(Date.today.month) && (report.timestamp.year)==(Date.today.year)
+              @month_reports.push(report)
+           end 
+        end 
+
+    #top users
+    @users = User.all 
+    @users = @users.sort_by
+  end 
 end

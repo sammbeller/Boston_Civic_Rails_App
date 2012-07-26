@@ -1,0 +1,137 @@
+<h2> Wheres My Lane Statistics </h2> 
+
+<ul class="nav nav-tabs" id="top">
+      <li class ="dropdown">
+      	<a href="#" class="dropdown-toggle" data-toggle="dropdown">HotSpots <b class="caret"></b></a>
+      	<ul class="dropdown-menu">
+                <li><a href="#hotspot_today" data-toggle="tab">Today</a></li>
+                <li><a href="#hotspot_week" data-toggle="tab">This Week</a></li>
+                <li><a href="#hotspot_month" data-toggle="tab">This Month</a></li>
+                <li><a href="#hotspot_all" data-toggle="tab">All</a></li>
+        </ul>
+      </li>
+      <li><a href="#users" data-toggle="tab">Top Users</a></li>
+      <li class="active"><a href="#reportsT" data-toggle="tab">Today's Reports</a></li>
+      <li><a href="#reportsW" data-toggle="tab">This Week's Reports</a></li>
+      <li><a href="#reportsM" data-toggle="tab">This Month's Reports</a></li>
+</ul>
+
+<div class="tab-content">
+	<div class="tab-pane" id="hotspot_today">
+		<h3>Today's HotSpots </h3> 
+		<br/>
+		<table class = "table table-bordered table-striped">
+  			<tr>
+    			<th>Street</th>
+    			<th>Reports</th>
+  			</tr>
+			<% @hotspot_reports.each do |street, num| %>
+  				<% if !street.nil?%>
+  					<tr>
+    					<td><%= street %></td>
+    					<td><%= num %></td>
+  					</tr>
+  				<% end %> 
+			<% end %>
+		</table>
+    </div> 
+
+    <div class="tab-pane" id="hotspot_month">
+		<h3>This Month's HotSpots </h3> 
+		<br/>
+		<table class = "table table-bordered table-striped">
+  			<tr>
+    			<th>Street</th>
+    			<th>Reports</th>
+  			</tr>
+			<% @hotspot_reports.each do |street, num| %>
+  				<% if !street.nil?%>
+  					<tr>
+    					<td><%= street %></td>
+    					<td><%= num %></td>
+  					</tr>
+  				<% end %> 
+			<% end %>
+		</table>
+    </div> 
+
+	<div class="tab-pane" id="hotspot_all">
+		<h3>All HotSpots </h3> 
+		<br/>
+		<table class = "table table-bordered table-striped">
+  			<tr>
+    			<th>Street</th>
+    			<th>Reports</th>
+  			</tr>
+			<% @hotspot_reports.each do |street, num| %>
+  				<% if !street.nil?%>
+  					<tr>
+    					<td><%= street %></td>
+    					<td><%= num %></td>
+  					</tr>
+  				<% end %> 
+			<% end %>
+		</table>
+    </div> 
+    <div class="tab-pane" id="hotspot_week">
+		<h3>This Weeks HotSpots </h3> 
+		<br/>
+		<table class = "table table-bordered table-striped">
+  			<tr>
+    			<th>Street</th>
+    			<th>Reports</th>
+  			</tr>
+			<% @hotspot_reports.each do |street, num| %>
+  				<% if !street.nil?%>
+  					<tr>
+    					<td><%= street %></td>
+    					<td><%= num %></td>
+  					</tr>
+  				<% end %> 
+			<% end %>
+		</table>
+
+    </div> 
+    <div class="tab-pane" id="users">
+    	<h3>Top Users</h3>
+    </div>
+    <div class="tab-pane active" id="reportsT">
+		<h3> Today's Reports </h3> 
+		<br/>
+		<table class = "table table-bordered table-striped">
+  			<tr>
+    			<th>Address</th>
+    			<th>User</th>
+    			<th>Timestamp</th>
+  			</tr>
+			<% @today_reports.each do |report| %>
+  				<tr>
+    				<td><%= report.address %></td>
+    				<td><%= report.user.nil? ? "none" : report.user.email %></td>
+    				<td><%= report.timestamp %></td>
+  				</tr>
+			<% end %>
+		</table>
+    </div> 
+    <div class="tab-pane" id="reportsW">
+    	<h3>This Week's Reports</h3>
+    </div>
+    <div class="tab-pane" id="reportsM">
+    	<h3>This Month's Reports</h3>
+    	<br/>
+		<table class = "table table-bordered table-striped">
+  			<tr>
+    			<th>Address</th>
+    			<th>User</th>
+    			<th>Timestamp</th>
+  			</tr>
+			<% @month_reports.each do |report| %>
+  				<tr>
+    				<td><%= report.address %></td>
+    				<td><%= report.user.nil? ? "none" : report.user.email %></td>
+    				<td><%= report.timestamp %></td>
+  				</tr>
+			<% end %>
+		</table>
+    </div>
+</div>

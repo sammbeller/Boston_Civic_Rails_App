@@ -17,12 +17,7 @@ class Report < ActiveRecord::Base
   end 
   after_validation :reverse_geocode
 
-
-  # after_initialize :init
-  #   def init
-  #     puts self.street
-  #     self.street  ||= "Main st"           #will set the default value only if it's nil
-  #   end
+  default_scope order: 'reports.created_at DESC'
 
     #method that finds nearby reports
     def find_nearby_reports(report, number, time, precision=nil)

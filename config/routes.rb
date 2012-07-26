@@ -34,6 +34,8 @@ TestApp::Application.routes.draw do
   match '/heatMap', to: 'messages#heat', as: 'heatMap'
   match '/update', to: 'users#updates', as: 'update'
 
+  match '/stats', to: 'reports#admin', as: 'stats'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
