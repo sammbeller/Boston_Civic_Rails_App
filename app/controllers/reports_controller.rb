@@ -137,9 +137,8 @@ class ReportsController < ApplicationController
   def admin 
     @reports = Report.order('created_at DESC')
 
-    #hot spot
-    @hotspot_reports= Report.count(:all, :group => 'street').sort_by {|street, count| -count }
-
+    #all hot spot
+    @hotspot_reports = Report.count(:all, :group => 'street').sort_by {|street, count| -count }
 
     #today reports
     @today_reports = []
@@ -148,6 +147,8 @@ class ReportsController < ApplicationController
         @today_reports.push(report)
       end 
     end 
+    #todays hotspots
+    #@hotspot_today = @today_reports.count(:all, :group => 'street').sort_by {|street, count| -count }
 
     #month reports
     @month_reports = []
