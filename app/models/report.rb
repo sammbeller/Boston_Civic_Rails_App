@@ -17,7 +17,7 @@ class Report < ActiveRecord::Base
   end 
   after_validation :reverse_geocode
 
-  default_scope order: 'reports.created_at DESC'
+#  default_scope order: 'reports.created_at DESC'
 
     #method that finds nearby reports
     def find_nearby_reports(report, number, time, precision=nil)
