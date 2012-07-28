@@ -12,7 +12,10 @@ class Report < ActiveRecord::Base
     if geo = results.first
       obj.city = geo.city
       obj.address = geo.address
-      obj.street = geo.address_components_of_type(:route)[0]["short_name"]
+      route_components = geo.address_components_of_type(:route)
+      if !(route_components.nil? || route_components[0].nil?)
+        obj.street = route_components[0]["short_name"]
+      end
     end 
   end 
   after_validation :reverse_geocode
