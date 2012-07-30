@@ -110,4 +110,8 @@ class MessagesController < ApplicationController
       @Reports = Report.all
     end
   end 
+
+  def updates 
+    @messages = Message.order('created_at DESC')
+  end 
 end

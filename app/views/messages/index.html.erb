@@ -24,7 +24,7 @@
     <div class="tab-content">
       <div class="tab-pane active" id="update">
         <div id="margin"> 
-          <table class="table table-condensed">
+          <table>
               <% @messages.each do |message| %>
                 <tbody>
                 <tr>
@@ -41,6 +41,7 @@
                         <%= link_to 'Delete', message, method: :delete, data: { confirm: 'Are you sure?' } %>
                       </div> 
                     <% end %>
+                    <hr/>
                   </td>
                 </tr>
               </tbody>
@@ -51,6 +52,8 @@
       </div>
       <div class="tab-pane" id="option">
         <div id="margin">
+          Choose how you would like to display the data:
+          <br/><br/>
           <%= render 'options_form', :path => root_path %>
         </div>
       </div>

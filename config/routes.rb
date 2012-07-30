@@ -32,9 +32,10 @@ TestApp::Application.routes.draw do
   match '/reports/mobile_create', to: 'reports#mcreate'
 
   match '/heatMap', to: 'messages#heat', as: 'heatMap'
-  match '/update', to: 'users#updates', as: 'update'
+  match '/email_update', to: 'users#updates', as: 'email'
 
   match '/stats', to: 'reports#admin', as: 'stats'
+  match '/updates', to: 'messages#updates', as: 'updates'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
