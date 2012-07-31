@@ -37,7 +37,7 @@ html, #map_canvas {
             myOptions);
 
         <% @Reports.each do |x|%>
-          addMarker(<%= x.latitude %>, <%=x.longitude%>, "<%=x.address%>");
+          addMarker(<%= x.latitude %>, <%=x.longitude%>, "<strong><%=x.address%></strong>");
         <% end %>
       }
 
