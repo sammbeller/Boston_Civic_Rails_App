@@ -10,11 +10,13 @@
   </tr>
 
 <% @settings.each do |setting| %>
+  <% if setting.shown %>
   <tr>
     <td><%= setting.prompt %></td>
     <td><%= setting.value %></td>
     <td><%= link_to 'Show', setting %> </br> <%= link_to 'Edit', edit_setting_path(setting) %></td>
   </tr>
+  <% end %>
 <% end %>
 </table>
 
