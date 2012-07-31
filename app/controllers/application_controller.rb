@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   def process_ping
     time = DateTime.now.to_i
     if time - Setting.find_by_name("LastPing").value >= 3600
-      reports = Report.find(:all, order: "id desc", limit: 10)
+      reports = Report.find(:all, order: "id desc", limit: Setting.find_by_name("RepsCheck"))
       reports.each.check_for_frequency
     end
   end

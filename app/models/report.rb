@@ -33,7 +33,7 @@ class Report < ActiveRecord::Base
       reports = Report.find_by_user_id(self.user_id)
       limit = DateTime.now.ago(1.minute)
       reports = reports.select { |el| el.timestamp > limit }
-      if reports.size > 30
+      if reports.size > Setting.find_by_name("MaxReps")
         self.user.flag.create(cause: "Abnomral posting frequency")
       end
     end
