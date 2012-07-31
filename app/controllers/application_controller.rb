@@ -1,8 +1,18 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   include SessionsHelper
+  #after_filter process_ping
 
   private
+
+  def process_ping
+    time = DateTime.now.to_i
+    if time - Setting.find_by_name("LastPing").value >= 3600
+      reports = Report.find(:all, order: "id desc", limit: 10)
+      reports.each.check_for_frequency
+    end
+  end
+
   def redirect_back_or(default)
   	redirect_to(session[:return_to] || default)
   	session.delete(:return_to)

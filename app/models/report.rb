@@ -29,6 +29,15 @@ class Report < ActiveRecord::Base
     	return Report.find_all_by_street(report.street)
     end
 
+    def check_for_frequency
+      reports = Report.find_by_user_id(self.user_id)
+      limit = DateTime.now.ago(1.minute)
+      reports = reports.select { |el| el.timestamp > limit }
+      if reports.size > 30
+        self.user.flag.create(cause: "Abnomral posting frequency")
+      end
+    end
+
     def self.find_by_options(span, days, time)
       reports = Report.all
       reports = reports.select do |x|
