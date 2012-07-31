@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_filter :signed_in_user, :except => [:mcreate, :activate]
-  
+  skip_before_filter :verify_authenticity_token, :only => :mcreate
+
   def activate 
     puts "************** #{params.inspect}"
     @user = User.find_by_remember_token(params[:remember_token])
