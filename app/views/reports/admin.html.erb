@@ -1,3 +1,5 @@
+<% provide(:title, 'Statistics') %>
+
 <h2> Where's My Lane Statistics </h2> 
 
 <ul class="nav nav-tabs" id="top">
@@ -14,6 +16,7 @@
       <li class="active"><a href="#reportsT" data-toggle="tab">Today's Reports</a></li>
       <li><a href="#reportsW" data-toggle="tab">This Week's Reports</a></li>
       <li><a href="#reportsM" data-toggle="tab">This Month's Reports</a></li>
+      <li><a href="#flags" data-toggle="tab">Flagged Users</a></li>
 </ul>
 
 <div class="tab-content">
@@ -22,13 +25,13 @@
   <div class="tab-pane" id="hotspot_today">
     <h3>Today's HotSpots </h3> 
     <br/>
-    <% if @hotspot_reports.any? %> 
+    <% if !@hotspot_today.nil? %> 
 		  <table class = "table table-bordered table-striped">
   			<tr>
     			<th>Street</th>
     			<th>Reports</th>
   			</tr>
-        <% @hotspot_reports.each do |street, num| %>
+        <% @hotspot_today.each do |street, num| %>
   				<% if !street.nil?%>
   					<tr>
     					<td><%= street %></td>
@@ -38,7 +41,7 @@
 		    <% end %>
 		  </table>
     <% else %>
-      No Reports yet today
+      No Reports today
     <% end %> 
   </div> 
 
@@ -46,13 +49,13 @@
   <div class="tab-pane" id="hotspot_month">
     <h3>This Month's HotSpots </h3> 
 		<br/>
-    <% if @hotspot_reports.any? %>
+    <% if !@hotspot_month.nil? %>
 		  <table class = "table table-bordered table-striped">
   			<tr>
     			<th>Street</th>
     			<th>Reports</th>
   			</tr>
-        <% @hotspot_reports.each do |street, num| %>
+        <% @hotspot_month.each do |street, num| %>
   				<% if !street.nil?%>
   					<tr>
     					<td><%= street %></td>
@@ -62,7 +65,7 @@
         <% end %>
 		  </table>
     <% else %>
-      No Reports yet this month
+      No Reports this month
     <% end %> 
   </div> 
 
@@ -70,6 +73,7 @@
 	<div class="tab-pane" id="hotspot_all">
 		<h3>All HotSpots </h3> 
 		<br/>
+    <% if !@hotspot_reports.nil? %>
 		<table class = "table table-bordered table-striped">
   		<tr>
     		<th>Street</th>
@@ -84,19 +88,22 @@
   			<% end %> 
 			<% end %>
 		</table>
+    <% else %>
+      No Reports
+    <% end %> 
   </div> 
 
   <!-- This weeks HotSpots --> 
   <div class="tab-pane" id="hotspot_week">
 		<h3>This Weeks HotSpots </h3> 
 		<br/>
-    <% if @hotspot_reports.any? %>
+    <% if !@hotspot_week.nil? %>
 		  <table class = "table table-bordered table-striped">
   			<tr>
     			<th>Street</th>
     			<th>Reports</th>
   			</tr>
-        <% @hotspot_reports.each do |street, num| %>
+        <% @hotspot_week.each do |street, num| %>
   				<% if !street.nil?%>
   					<tr>
     					<td><%= street %></td>
@@ -106,13 +113,32 @@
         <% end %>
 		  </table>
     <% else %>
-      No Reports yet this week
+      No Reports this week
     <% end %> 
   </div> 
 
   <!-- Top Users --> 
   <div class="tab-pane" id="users">
     <h3>Top Users</h3>
+    <br/>
+    <% if !@users.nil? %>
+      <table class = "table table-bordered table-striped">
+        <tr>
+          <th>User</th>
+          <th>Reports</th>
+        </tr>
+        <% @users.each do |user, num| %>
+          <% if !user.nil?%>
+            <tr>
+              <td><%= user %></td>
+              <td><%= num %></td>
+            </tr>
+          <% end %> 
+        <% end %>
+      </table>
+    <% else %>
+      No Users
+    <% end %>
   </div>
 
   <!-- Todays Reports --> 
@@ -130,12 +156,12 @@
   				<tr>
     				<td><%= report.address %></td>
     				<td><%= report.user.nil? ? "none" : report.user.email %></td>
-    				<td><%= report.timestamp %></td>
+    				<td><%= report.timestamp.to_time.strftime('%a %b %d %H:%M %Y') %></td>
   				</tr>
         <% end %>
 		  </table>
     <% else %>
-      No Reports yet today
+      No Reports today
     <% end %>
   </div> 
 
@@ -143,9 +169,23 @@
   <div class="tab-pane" id="reportsW">
     <h3>This Week's Reports</h3>
     <br/>
-    <% if @today_reports.any? %>
+    <% if @week_reports.any? %>
+      <table class = "table table-bordered table-striped">
+        <tr>
+          <th>Address</th>
+          <th>User</th>
+          <th>Timestamp</th>
+        </tr>
+        <% @week_reports.each do |report| %>
+          <tr>
+            <td><%= report.address %></td>
+            <td><%= report.user.nil? ? "none" : report.user.email %></td>
+            <td><%= report.timestamp.to_time.strftime('%a %b %d %H:%M %Y') %></td>
+          </tr>
+        <% end %>
+      </table>
     <% else %>
-      No Reports yet this week 
+      No Reports this week 
     <% end %>
   </div>
 
@@ -164,12 +204,34 @@
   				<tr>
     				<td><%= report.address %></td>
     				<td><%= report.user.nil? ? "none" : report.user.email %></td>
-    				<td><%= report.timestamp %></td>
+    				<td><%= report.timestamp.to_time.strftime('%a %b %d %H:%M %Y') %></td>
   				</tr>
         <% end %>
 		  </table>
     <% else %>
-      No Reports yet this month 
+      No Reports this month 
+    <% end %>
+  </div>
+
+  <!-- Flagged Users --> 
+  <div class="tab-pane" id="flags">
+    <h3>Flagged Users</h3>
+    <br/>
+    <% if @flags.any? %>
+      <table class = "table table-bordered table-striped">
+        <tr>
+          <th>User</th>
+          <th>Reports</th>
+        </tr>
+        <% @flags.each do |f| %>
+          <tr>
+            <td><%= f.user.nil? ? "none" : f.user.email %></td>
+            <td><%= f.user.reports.count %></td>
+          </tr>
+        <% end %>
+      </table>
+    <% else %>
+      No Flagged users  
     <% end %>
   </div>
 </div>

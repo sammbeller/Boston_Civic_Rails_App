@@ -188,4 +188,6 @@ $('#hotspot_month').collapse({
 $('#hotspot_today').collapse({
   toggle: false
 })
-
+$('#flags').collapse({
+  toggle: false
+})

@@ -89,7 +89,6 @@ class ReportsController < ApplicationController
 
           #figure out message to send back to mobile through helper method
           response= msg(@report)
-          puts "**************************** #{response}"
           
           puts "should have saved"
           format.html { redirect_to @report, notice: 'Report was successfully created.' }
@@ -140,27 +139,41 @@ class ReportsController < ApplicationController
     #all hot spot
     @hotspot_reports = Report.count(:all, :group => 'street').sort_by {|street, count| -count }
 
-    #today reports
-    @today_reports = []
-    @reports.each do |report|
-      if report.timestamp.today?
-        @today_reports.push(report)
-      end 
-    end 
+    # #today reports
+    @today_reports = @reports.where(:timestamp => ((Time.now.midnight - 1.day)..Time.now.midnight))
     
     #todays hotspots
-    #@hotspot_today = @today_reports.count(:all, :group => 'street').sort_by {|street, count| -count }
+     if @today_reports.any?
+      @hotspot_today = @today_reports.count(:all, :group => 'street').sort_by {|street, count| -count }
+     else
+       @hotspot_today = nil
+     end 
+
+    #week reports
+    @week_reports = @reports.where(:timestamp => ((Time.now.midnight - 1.week)..Time.now.midnight))
+    
+    #week hotspots
+    if !@week_reports.nil? 
+      @hotspot_week = @week_reports.count(:all, :group => 'street').sort_by {|street, count| -count }
+    else
+      @hotspot_week = nil
+    end 
 
     #month reports
-    @month_reports = []
-        @reports.each do |report|
-           if (report.timestamp.month)==(Date.today.month) && (report.timestamp.year)==(Date.today.year)
-              @month_reports.push(report)
-           end 
-        end 
+    @month_reports = @reports.where(:timestamp => ((Time.now.midnight - 30.days)..Time.now.midnight))
+    
+    #month hotspots
+    if !@month_reports.nil?
+      @hotspot_month = @month_reports.count(:all, :group => 'street').sort_by {|street, count| -count }
+    else
+      @hotspot_month = nil
+    end 
 
     #top users
-    @users = User.all 
-    @users = @users.sort_by
+    @users = Report.count(:all, :group => 'user_id').sort_by {|user, count| -count}
+
+    #flagged users
+    @flags = Flag.all 
+
   end 
 end

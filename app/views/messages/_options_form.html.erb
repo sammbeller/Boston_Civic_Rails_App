@@ -2,19 +2,18 @@
     
     <!-- SPAN OF TIME--> 
     <strong>Span of Time:</strong>   
-    <%= select_tag :span, options_for_select([['All Time', (DateTime.new) ], ['Today', (DateTime.now - 24.hours)], ['This Week', (DateTime.now - 1.week)], ['This Month', (DateTime.now - 30.days)], ['This Year', (DateTime.now - 365.days)]]) %>
+    <%= select_tag :span, options_for_select([['All Time', (DateTime.new) ], ['Today', (DateTime.now - 24.hours)], ['This Week', (DateTime.now - 1.week)], ['This Month', (DateTime.now - 30.days)], ['This Year', (DateTime.now - 365.days)]], [params[:span].to_s]) %>
 
     <!-- DAY --> 
     <strong>Day:</strong>
-    <%= select_tag :day, options_for_select([['All Days', (0..6).to_a], ['Weekend', [0, 6]], ['Weekdays', [1, 2, 3, 4, 5]], ['Sunday', [0]], ['Monday', [1]], ['Tuesday', [2]], ['Wednesday', [3]], ['Thursday', [4]], ['Friday', [5]], ['Saturday', [6]]]) %>
+    <%= select_tag :day, options_for_select([['All Days', (0..6).to_a], ['Weekend', [0, 6].to_a], ['Weekdays', [1, 2, 3, 4, 5]], ['Sunday', [0]], ['Monday', [1]], ['Tuesday', [2]], ['Wednesday', [3]], ['Thursday', [4]], ['Friday', [5]], ['Saturday', [6]]], [params[:day]]) %>
 
     <!-- TIME OF DAY --> 
     <strong>Time of Day:</strong>
-    <%= select_tag :time, options_for_select([['All Day', (0..23).to_a], ['Morning', (6..11).to_a], ['Afternoon', (12..17).to_a], ['Evening', (18..22).to_a], ['Night', [23, 24] + (0..5).to_a]]) %>
+    <%= select_tag :time, options_for_select([['All Day', (0..23).to_a], ['Morning', (6..11).to_a], ['Afternoon', (12..17).to_a], ['Evening', (18..22).to_a], ['Night', [23, 24] + (0..5).to_a]], [params[:time]]) %>
     </br>
 
     <div align="center">
     <%= submit_tag "Show Data", :name => nil, :class => 'btn btn-primary' %>
     </div>
-
 <% end %>

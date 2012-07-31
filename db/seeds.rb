@@ -154,10 +154,9 @@ Report.create(latitude: 42.36128694516964,  longitude: -71.06390476226807, times
 Report.create(latitude: 42.36135036635846,  longitude: -71.06332540512085, timestamp: '2012-06-5 17:22:03.000000')
 Report.create(latitude: 42.361366221645646,  longitude: -71.0624885559082, timestamp: '2012-07-6 17:22:01.000000')
 Report.create(latitude: 42.364109126111664,  longitude: -71.06072902679443, timestamp: '2012-06-7 17:22:01.000000')
-
-
-
-
+Report.create(latitude: 42.364109126111664,  longitude: -71.06072902679443, timestamp: '2012-07-30 17:22:01.000000')
+Report.create(latitude: 42.36133451106724,  longitude: -71.0645055770874, timestamp: '2012-07-30 17:22:00.000000')
+Report.create(latitude: 42.36128694516964,  longitude: -71.06390476226807, timestamp: '2012-07-30 17:22:01.000000')
 
 Message.create(content: "This is a test message.")
 Message.create(content: "Thank you for using Where's My Lane!")
