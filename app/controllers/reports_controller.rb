@@ -154,7 +154,7 @@ class ReportsController < ApplicationController
     
     #week hotspots
     if !@week_reports.nil? 
-      @hotspot_week = @week_reports.count(:all, :group => 'street').sort_by {|street, count| -count }
+      @hotspot_week = @week_reports.count(:all, :group => 'created_at, street').sort_by {|street, count| -count }
     else
       @hotspot_week = nil
     end 
