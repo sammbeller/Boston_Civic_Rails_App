@@ -1,11 +1,26 @@
-class UsersController < ApplicationController
-  before_filter :signed_in_user, :except => [:mcreate, :activate]
-  skip_before_filter :verify_authenticity_token, :only => :mcreate
+#users_contoller.rb
 
+#Available Actions:
+#   users#activate : changes the given user's activation value to true
+#   users#index : lists all users
+#   users#show : displays given user
+#   users#new : displays form for creation of a new user from the website
+#   users#edit :  displays form for editing a user
+#   users#create : creates a new user from params, accessible from website
+#   users#mcreate : creates a new user from params, accessible from website
+#   users#update : updates given user with data from params
+#   users#destroy : deletes given user from db
+#   users#updates : emails current user list of all reports
+
+class UsersController < ApplicationController
+  #It is assumed that the mcreate and activate actions will not be taken by signed in users
+  #It is assumed that the mcreate action will be taken from mobile clients
+  before_filter :signed_in_user, except: [:mcreate, :activate]
+  skip_before_filter :verify_authenticity_token, only: [:mcreate]
+
+  # GET /users/activate/:remember_token
   def activate 
-    puts "************** #{params.inspect}"
     @user = User.find_by_remember_token(params[:remember_token])
-    puts "************** #{@user.inspect}"
     @user.activation = true
   end 
 
@@ -73,6 +88,7 @@ class UsersController < ApplicationController
     if user.find_by_email(email)
       respond_to do |format|
         format.json { render json: { reponse: "Email already taken!" }
+      end
     else
       pw = SecureRandom.urlsafe_base64
       @user = User.new(email: email, password: pw, password_confirmation: pw)
