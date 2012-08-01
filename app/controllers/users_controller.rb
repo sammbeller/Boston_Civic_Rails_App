@@ -70,7 +70,7 @@ class UsersController < ApplicationController
   def mcreate
     puts "******************* #{params.inspect}"
     email = params[:email]
-    if @user.find_by_email(email)
+    if User.find_by_email(email)
       respond_to do |format|
         format.json { render json: { reponse: "Email already taken!" } }
       end
