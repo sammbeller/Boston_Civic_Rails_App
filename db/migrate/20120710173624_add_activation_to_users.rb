@@ -1,6 +1,6 @@
 class AddActivationToUsers < ActiveRecord::Migration
   def change
-  	add_column :users, :actication, :boolean, default: false
+  	add_column :users, :activation, :boolean, default: false
   end
 end
 

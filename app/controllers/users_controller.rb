@@ -70,9 +70,10 @@ class UsersController < ApplicationController
   def mcreate
     puts "******************* #{params.inspect}"
     email = params[:email]
-    if user.find_by_email(email)
+    if User.find_by_email(email)
       respond_to do |format|
-        format.json { render json: { reponse: "Email already taken!" }
+        format.json { render json: { response: "Email already taken!" } }
+      end
     else
       pw = SecureRandom.urlsafe_base64
       @user = User.new(email: email, password: pw, password_confirmation: pw)
@@ -82,7 +83,7 @@ class UsersController < ApplicationController
         if @user.save
           # Tell the UserMailer to send a welcome Email after save
           UserMailer.activation_email(@user).deliver
-          format.json { render json: {token: @user.remember_token, NumReports: Setting.find(1).value}, status: :created, response: "Account successfully created!" }
+          format.json { render json: {token: @user.remember_token, NumReports: Setting.find(1).value, response: "Account successfully created!"}, status: :created }
         else
           format.json { render json: @user.errors, status: :unprocessable_entity }
         end
