@@ -1,7 +1,7 @@
 class ReportsController < ApplicationController
   # before_filter :signed_in_user
   skip_before_filter :verify_authenticity_token, :only => [:mcreate, :mindex]
-  before_filter :signed_in_user except:[:mcreate]
+  before_filter :signed_in_user, except: [:mcreate]
   
   # GET /reports
   # GET /reports.json
