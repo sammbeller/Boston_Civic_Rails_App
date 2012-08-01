@@ -74,7 +74,6 @@ class UsersController < ApplicationController
       respond_to do |format|
         format.json { render json: { reponse: "Email already taken!" }
       end
-    end
     else
       pw = SecureRandom.urlsafe_base64
       @user = User.new(email: email, password: pw, password_confirmation: pw)
