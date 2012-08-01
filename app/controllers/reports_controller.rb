@@ -77,7 +77,7 @@ class ReportsController < ApplicationController
      
     if user #&& user.activation
       params[:timestamp] = DateTime.new(1970, 1, 1) + (params[:timestamp].to_i/1000).seconds
-      @report = Report.new(params[:report])
+      @report = Report.new(params)
       @report.user_id = user.id
 
       
