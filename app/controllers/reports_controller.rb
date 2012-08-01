@@ -84,9 +84,9 @@ class ReportsController < ApplicationController
       respond_to do |format|
           #figure out message to send back to mobile through helper method
           # This is where string identifier is sent back
-          response= msg(@report)
         if @report.save
           puts "should have saved"
+          response= msg(@report)
           format.html { redirect_to @report, notice: 'Report was successfully created.' }
           format.json { render json: { response: response } }
         else
