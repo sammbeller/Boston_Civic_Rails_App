@@ -51,7 +51,7 @@ html, #map_canvas {
       /* ALL */
       var taxiData = [
         <% @Reports.each do |x|%>
-          new google.maps.LatLng(<%= x.latitude %>, <%=x.longitude%>),
+         { location: new google.maps.LatLng(<%= x.latitude %>, <%=x.longitude%>), weight: 100},
         <% end %>
       ];
       function all() {
