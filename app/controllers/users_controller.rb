@@ -72,7 +72,7 @@ class UsersController < ApplicationController
     email = params[:email]
     if user.find_by_email(email)
       respond_to do |format|
-        format.json { render json: { reponse: "Email already taken!" }
+        format.json { render json: { reponse: "Email already taken!" } }
       end
     else
       pw = SecureRandom.urlsafe_base64
