@@ -98,7 +98,7 @@ class ReportsController < ApplicationController
     else
       puts "***********No user with given token"
       respond_to do |format|
-        format.json { render json: response:"User not identified" }
+        format.json { render json: { response:"User not identified" } }
       end
     end
   end
