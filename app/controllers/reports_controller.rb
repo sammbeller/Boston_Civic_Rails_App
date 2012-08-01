@@ -137,14 +137,14 @@ class ReportsController < ApplicationController
     @reports = Report.order('created_at DESC')
 
     #all hot spot
-    @hotspot_reports = Report.count(:all, :group => 'street').sort_by {|street, count| -count }
+    @hotspot_reports = Report.count(:all, :group => 'created_at, street').sort_by {|street, count| -count }
 
     # #today reports
     @today_reports = @reports.where(:timestamp => ((Time.now.midnight - 1.day)..Time.now.midnight))
     
     #todays hotspots
      if @today_reports.any?
-      @hotspot_today = @today_reports.count(:all, :group => 'street').sort_by {|street, count| -count }
+      @hotspot_today = @today_reports.count(:all, :group => 'created_at, street').sort_by {|street, count| -count }
      else
        @hotspot_today = nil
      end 
@@ -154,7 +154,7 @@ class ReportsController < ApplicationController
     
     #week hotspots
     if !@week_reports.nil? 
-      @hotspot_week = @week_reports.count(:all, :group => 'street').sort_by {|street, count| -count }
+      @hotspot_week = @week_reports.count(:all, :group => 'created_at, street').sort_by {|street, count| -count }
     else
       @hotspot_week = nil
     end 
@@ -164,7 +164,7 @@ class ReportsController < ApplicationController
     
     #month hotspots
     if !@month_reports.nil?
-      @hotspot_month = @month_reports.count(:all, :group => 'street').sort_by {|street, count| -count }
+      @hotspot_month = @month_reports.count(:all, :group => 'created_at, street').sort_by {|street, count| -count }
     else
       @hotspot_month = nil
     end 
