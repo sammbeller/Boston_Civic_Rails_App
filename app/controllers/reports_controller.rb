@@ -1,3 +1,17 @@
+#reports_controller.rb
+
+#Available Actions
+#   reports#index : lists all reports
+#   reports#mobile : lists last n reports where n is the value of the RepLimit setting, for mobile
+#   reports#show : displays given report 
+#   reports#new : displays form for creation of a new report from website
+#   reports#edit : displays form for editing a report
+#   reports#create : creates a new report from params, accessible from website
+#   reports#mcreate : creates a new report from params, accessible from mobile
+#   reports#update : updates given report with data from params
+#   reports#destroy : deletes given report from db
+#   reports#admin : populates various lists for display on admin console page
+
 class ReportsController < ApplicationController
   # before_filter :signed_in_user
   skip_before_filter :verify_authenticity_token, only: [:mcreate, :mindex]
