@@ -67,7 +67,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(params[:user], :as => :admin_user)
-    Logging.create(when: (DateTime.now), user_id: current_user, event: "Requesting new Account" )
+    Logging.create( when: (DateTime.now), user_id: current_user, event: "Requesting New Account" )
 
     respond_to do |format|
       if @user.save
@@ -83,22 +83,23 @@ class UsersController < ApplicationController
   # POST /users/mcreate
   # POST /users/mcreate.json
   def mcreate
-    puts "******************* #{params.inspect}"
-    email = params[:email]
-    if user.find_by_email(email)
+    # Checks if the email sent is already taken
+    if user.find_by_email(params[:email])
       respond_to do |format|
-        format.json { render json: { reponse: "Email already taken!" }
+        format.json { render json: { reponse: "Email already taken!" } }
       end
     else
+      #Generates random password
       pw = SecureRandom.urlsafe_base64
-      @user = User.new(email: email, password: pw, password_confirmation: pw)
+      @user = User.new(email: params[:email], password: pw, password_confirmation: pw)
+      #Logs new account creation
       Logging.create(when: (DateTime.now), user_id: current_user, event: "Requesting new Account" )
 
       respond_to do |format|
         if @user.save
           # Tell the UserMailer to send a welcome Email after save
           UserMailer.activation_email(@user).deliver
-          format.json { render json: {token: @user.remember_token, NumReports: Setting.find(1).value}, status: :created, response: "Account successfully created!" }
+          format.json { render json: { token: @user.remember_token, NumReports: Setting.find(1).value, response: "Account successfully created!" }, status: :created }
         else
           format.json { render json: @user.errors, status: :unprocessable_entity }
         end
@@ -112,6 +113,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     respond_to do |format|
+      #Allows :admin attribute to be assigned only by users for whom the attribute is true
       if @user.update_attributes(params[:user], :as => :admin_user)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { head :no_content }
@@ -135,10 +137,9 @@ class UsersController < ApplicationController
     end
   end
 
-
+  #
   def updates
     @reports = Report.all
-    puts "********************** #{@reports}"
     @user = current_user
     UserMailer.updates_email(@user, @reports).deliver
   end 
