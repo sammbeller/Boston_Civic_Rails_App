@@ -13,10 +13,11 @@
 #   reports#admin : populates various lists for display on admin console page
 
 class ReportsController < ApplicationController
-  # before_filter :signed_in_user
-  skip_before_filter :verify_authenticity_token, only: [:mcreate, :mindex]
+  # It is assumed that the mcreate and mobile actions will not be taken by signed in users
+  # It is assumed that the mcreate and mobile actions will be taken from mobile clients
   before_filter :signed_in_user, except: [:mcreate, :mobile]
-  
+  skip_before_filter :verify_authenticity_token, only: [:mcreate, :mobile]
+
   # GET /reports
   # GET /reports.json
   def index
@@ -29,6 +30,7 @@ class ReportsController < ApplicationController
   end
 
   # GET /reports/mindex.json
+  #******************************* need to add order to this  order: 'created_at DESC'
   def mobile
     @reports = Report.find(:all, limit: Setting.find_by_name("RepLimit").value)
     render json: @reports
@@ -63,9 +65,12 @@ class ReportsController < ApplicationController
 
   # POST /reports
   # POST /reports.json
+  #****************** currently not funcitoning
   def create
+    # converts timestamp in miliseconds since epoch to DateTime object
     params[:timestamp] = DateTime.new(1970, 1, 1) + (params[:timestamp].to_i/1000).seconds
     @report = Report.new(params)
+    # should remove
     Logging.create(when: (DateTime.now), user_id: current_user, event: "Report Double Parked Car")
     @report.user = current_user
 
@@ -87,15 +92,13 @@ class ReportsController < ApplicationController
   # POST /reports/mobile_create.json
   def mcreate
     user = User.find_by_remember_token(params[:remember_token])
-    puts "#{params}"
      
     if user #&& user.activation
+      # converts timestamp in miliseconds since epoch to DateTime object
       params[:timestamp] = DateTime.new(1970, 1, 1) + (params[:timestamp].to_i/1000).seconds
       @report = Report.new(params[:report])
       @report.user_id = user.id
 
-      
-      
       Logging.create(when: (DateTime.now), user_id: current_user, event: "Report Double Parked Car")
       
       respond_to do |format|
@@ -109,6 +112,7 @@ class ReportsController < ApplicationController
           # This is where string identifier is sent back
             format.json { render json: { response:response } }
         else
+          #this is unclear, do we even need an html option hear?
           puts "should not have saved"
           format.html { render action: "new" }
           format.json { render json: @report.errors, status: :unprocessable_entity }
