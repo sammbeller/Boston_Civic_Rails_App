@@ -17,7 +17,7 @@ group :development, :test do
 	gem 'rspec-rails', '2.10.0'
 	gem 'annotate', '~> 2.4.1.beta'
 	gem 'heroku'
-	gem "cucumber-rails", "0.3.2"
+	gem "cucumber-rails", :require => false
 	gem "webrat", "0.7.2"
 end
 
